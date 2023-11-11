@@ -15,10 +15,10 @@
     if (isset($url) && $url !="") {
         switch ($url) {
             case "":
-
+                
                 break;
 
-                
+
             default:
             require_once"view/client/home.php";
                 break;
