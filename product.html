@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyFood</title>
+  <link rel="stylesheet" href="src/css/index.css">
+  <link rel="stylesheet" href="src/css/base.css">
+  <script src="src/Javascript/main.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+</head>
+
+<body class="font-montserrat min-w-[170px]">
+  <header class="sticky top-0 z-50 hidden text-gray-700 bg-white border-b border-gray-200 lg:block">
+    <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+      <a class="flex items-center mb-4 font-medium font title-font md:mb-0" href="#" target="_blank">
+        <img class="max-w-[100px] max-h-[150px]" src="./src/assets/logo/logo.png" alt="">
+      </a>
+      <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+        <ul class="flex w-full justify-between gap-6 text-sm uppercase menu">
+          <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Trang chủ</a></li>
+          <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Giới thiệu</a></li>
+          <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Sản Phẩm</a></li>
+          <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Blog</a></li>
+          <li>
+            <div class="relative inline-block text-left group">
+              <div>
+                <button type="button" id="menu-drop" aria-expanded="true" aria-haspopup="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="setting">
+                    <path fill="#200E32"
+                      d="M10.2143,0.0004 C10.7643,-0.0096 11.2853,0.1894 11.6743,0.5704 C12.0653,0.9394 12.2743,1.4504 12.2743,1.9904 C12.2743,3.0904 13.1843,3.9814 14.3153,3.9814 C14.6643,3.9814 15.0143,3.8804 15.3253,3.7104 C16.2943,3.1894 17.5043,3.5204 18.0543,4.4504 L18.0543,4.4504 L18.7353,5.6204 C18.9053,5.9204 19.0043,6.2604 19.0043,6.6104 C19.0043,7.3204 18.6153,7.9814 17.9853,8.3304 C17.6743,8.5004 17.4143,8.7604 17.2353,9.0614 C16.7043,10.0004 17.0353,11.1894 17.9853,11.7314 C18.9443,12.2804 19.2743,13.4814 18.7353,14.4304 L18.7353,14.4304 L18.0543,15.5614 C17.6943,16.1804 17.0243,16.5614 16.3043,16.5614 C15.9443,16.5614 15.5843,16.4704 15.2853,16.2904 C14.9643,16.1204 14.6153,16.0204 14.2643,16.0204 C13.7243,16.0204 13.2043,16.2314 12.8253,16.6104 C12.4343,16.9814 12.2243,17.4904 12.2243,18.0204 C12.2243,19.1104 11.3153,20.0004 10.1843,20.0004 L10.1843,20.0004 L8.8153,20.0004 C8.2743,20.0004 7.7643,19.7804 7.3943,19.4104 C7.0143,19.0304 6.8153,18.5304 6.8153,18.0104 C6.8153,16.9104 5.9143,16.0204 4.7853,16.0204 C4.4143,16.0204 4.0543,16.1204 3.7443,16.3114 C3.2743,16.5704 2.7143,16.6404 2.1943,16.5104 C1.6743,16.3704 1.2243,16.0304 0.9543,15.5804 L0.9543,15.5804 L0.3153,14.4504 C0.0143,13.9814 -0.0757,13.4204 0.0653,12.8904 C0.2043,12.3604 0.5653,11.9104 1.0543,11.6404 C1.3653,11.4704 1.6243,11.2204 1.8043,10.9104 C2.3253,9.9704 1.9943,8.7904 1.0543,8.2404 C0.1043,7.7004 -0.2257,6.5104 0.3153,5.5704 L0.3153,5.5704 L0.9543,4.4504 C1.2243,3.9814 1.6743,3.6404 2.2043,3.5004 C2.7353,3.3604 3.2943,3.4394 3.7643,3.7104 C4.0843,3.8804 4.4343,3.9704 4.7853,3.9704 C5.3253,3.9704 5.8443,3.7604 6.2243,3.3904 C6.6043,3.0204 6.8153,2.5104 6.8153,1.9904 C6.8153,0.8904 7.7243,0.0004 8.8543,0.0004 L8.8543,0.0004 Z M10.6153,7.4814 C9.5653,7.0504 8.3543,7.2804 7.5443,8.0704 C6.7443,8.8504 6.4943,10.0404 6.9343,11.0614 C7.3653,12.0904 8.3843,12.7604 9.5243,12.7604 L9.5243,12.7604 L9.5353,12.7604 C10.2853,12.7704 10.9853,12.4814 11.5143,11.9604 C12.0443,11.4504 12.3443,10.7504 12.3443,10.0204 C12.3543,8.9104 11.6643,7.9004 10.6153,7.4814 Z"
+                      transform="translate(2.5 2)"></path>
+                  </svg>
+                </button>
+              </div>
+              <div id="sub-menu-drop"
+                class="absolute right-0 z-10 hidden w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg animate-down ring-1 ring-black ring-opacity-5 focus:outline-none"
+                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                <div class="py-1" role="none">
+                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                  <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                    tabindex="-1" id="menu-item-0">
+                    Cài đặt tài khoản
+                  </a>
+                  <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                    tabindex="-1" id="menu-item-0">
+                    Vào trang quản trị
+                  </a>
+                  <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                    tabindex="-1" id="menu-item-1">
+                    Hỗ trợ
+                  </a>
+                  <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                    tabindex="-1" id="menu-item-2">
+                    Đơn hàng của tôi
+                  </a>
+                  <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                    tabindex="-1" id="menu-item-2">
+                    Đổi mật khẩu
+                  </a>
+                  <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                    tabindex="-1" id="menu-item-2">
+                    Quên mật khẩu
+                  </a>
+                  <form method="POST" action="#" role="none">
+                    <button type="submit"
+                      class="hover:bg-slate-300 block w-full px-4 py-2 text-sm text-left text-gray-700 uppercase"
+                      role="menuitem" tabindex="-1" id="menu-item-3">
+                      Đăng xuất
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+
+
+
+
+
+  <!-- End aside -->
+
+  <article class="w-[100%]">
+    </header>
+    <!-- End header -->
+    <section class="max-w-7xl mx-auto px-10">
+      <div class="grid md:grid-cols-[190px,auto] mt-10 p-4">
+        <div class="hidden md:block">
+          <h1 class="text-3xl text-orange-500 font-medium">Danh mục</h1>
+          <div style="
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.23);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);" class="mt-5 p-3 bg-white">
+            <ul class="space-y-4">
+              <a href="">
+                <li class="rounded py-2 px-2 text-gray-700 font-medium">Tất cả </li>
+              </a>
+              <a class="text-gray-700 font-medium" href=" ">
+                <li class="rounded py-2 px-2 hover:bg-gray-200">Bánh Mì</li>
+              </a>
+            </ul>
+          </div>
+        </div>
+        <div class="px-4">
+          <div class="">
+            <div class="products__title text-center">
+              <p class="text-3xl font-medium text-orange-500 mt-5 ">
+                " Ăn đã – chuyện khác để sau "
+              </p>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
+            <div style="
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.20);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
+              <a class="mt-2" href="">
+                <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center"
+                  src="https://banhmihanoi.net/wp-content/uploads/2020/05/banh-mi-xuc-xich.jpg" alt="" class="rounded">
+                <h2 class="truncate mt-3 font-medium">Bánh mì xúc xích</h2>
+                <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
+                  <span class="text-xs">
+
+
+
+                    <span class='text-yellow-500'>★★★★★</span>
+
+
+                  </span>
+                </p>
+
+              </a>
+              <form action=" $SITE_URL /cart/index.php?btn_order" method="post">
+                <input type="hidden" name="product_id" value=" $product_id ">
+                <input type="hidden" name="image" value=" $image ">
+                <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                  Thêm vào giỏ
+                </button>
+              </form>
+
+
+            </div>
+            <div style="
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.20);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
+              <a class="mt-2" href="">
+                <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center"
+                  src="https://banhmihanoi.net/wp-content/uploads/2020/05/banh-mi-xuc-xich.jpg" alt="" class="rounded">
+                <h2 class="truncate mt-3 font-medium">Bánh mì xúc xích</h2>
+                <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
+                  <span class="text-xs">
+                    <span class='text-yellow-500'>★★★★★</span>
+                  </span>
+                </p>
+              </a>
+              <form action=" $SITE_URL /cart/index.php?btn_order" method="post">
+                <input type="hidden" name="product_id" value=" $product_id ">
+                <input type="hidden" name="image" value=" $image ">
+                <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                  Thêm vào giỏ
+                </button>
+              </form>
+            </div>
+            <div style="
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.20);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
+              <a class="mt-2" href="">
+                <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center"
+                  src="https://banhmihanoi.net/wp-content/uploads/2020/05/banh-mi-xuc-xich.jpg" alt="" class="rounded">
+                <h2 class="truncate mt-3 font-medium">Bánh mì xúc xích</h2>
+                <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
+                  <span class="text-xs">
+                    <span class='text-yellow-500'>★★★★★</span>
+                  </span>
+                </p>
+              </a>
+              <form action=" $SITE_URL /cart/index.php?btn_order" method="post">
+                <input type="hidden" name="product_id" value=" $product_id ">
+                <input type="hidden" name="image" value=" $image ">
+                <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                  Thêm vào giỏ
+                </button>
+              </form>
+            </div>
+            <div style="
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.20);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
+              <a class="mt-2" href="">
+                <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center"
+                  src="https://banhmihanoi.net/wp-content/uploads/2020/05/banh-mi-xuc-xich.jpg" alt="" class="rounded">
+                <h2 class="truncate mt-3 font-medium">Bánh mì xúc xích</h2>
+                <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
+                  <span class="text-xs">
+                    <span class='text-yellow-500'>★★★★★</span>
+                  </span>
+                </p>
+              </a>
+              <form action=" $SITE_URL /cart/index.php?btn_order" method="post">
+                <input type="hidden" name="product_id" value=" $product_id ">
+                <input type="hidden" name="image" value=" $image ">
+                <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                  Thêm vào giỏ
+                </button>
+              </form>
+            </div>
+            <div style="
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.20);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
+              <a class="mt-2" href="">
+                <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center"
+                  src="https://banhmihanoi.net/wp-content/uploads/2020/05/banh-mi-xuc-xich.jpg" alt="" class="rounded">
+                <h2 class="truncate mt-3 font-medium">Bánh mì xúc xích</h2>
+                <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
+                  <span class="text-xs">
+                    <span class='text-yellow-500'>★★★★★</span>
+                  </span>
+                </p>
+              </a>
+              <form action=" $SITE_URL /cart/index.php?btn_order" method="post">
+                <input type="hidden" name="product_id" value=" $product_id ">
+                <input type="hidden" name="image" value=" $image ">
+                <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                  Thêm vào giỏ
+                </button>
+              </form>
+            </div>
+            <div style="
+                background: rgba(255, 255, 255, 0.25);
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.20);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
+              <a class="mt-2" href="">
+                <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center"
+                  src="https://banhmihanoi.net/wp-content/uploads/2020/05/banh-mi-xuc-xich.jpg" alt="" class="rounded">
+                <h2 class="truncate mt-3 font-medium">Bánh mì xúc xích</h2>
+                <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
+                  <span class="text-xs">
+                    <span class='text-yellow-500'>★★★★★</span>
+                  </span>
+                </p>
+              </a>
+              <form action=" $SITE_URL /cart/index.php?btn_order" method="post">
+                <input type="hidden" name="product_id" value=" $product_id ">
+                <input type="hidden" name="image" value=" $image ">
+                <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                  Thêm vào giỏ
+                </button>
+              </form>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- End quantity__statistics -->
+      </main>
+  </article>
+  </div>
+  <footer class="pt-24 mx-auto text-gray-700">
+    <section class="grid w-full grid-cols-2 gap-4 px-8 md:grid-cols-3 lg:grid-cols-4 md:px-14 lg:px-20">
+      <div class="ml-5 footer__item-logo">
+        <img class="h-16" src="src/assets/images/layout/logo.png" alt="logo" />
+        <p class="footer-item-title--desc mt-4 text-gray-500 text-sm max-w-[220px]">
+          Website được phát triển bởi đội ngũ sinh viên FPT Polytechnic.
+        </p>
+      </div>
+      <div class="mb-5 ml-5 footer__item">
+        <h1 class="block mb-3 text-xl font-bold footer__item-title">
+          Liên hệ
+        </h1>
+        <ul class="mt-3 footer__item-list">
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Giới thiệu
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Góp ý
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Tuyển dụng
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Điều khoản
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-5 ml-5 footer__item">
+        <h1 class="block mb-3 text-xl font-bold footer__item-title">
+          Hỗ trợ
+        </h1>
+        <ul class="mt-3 footer__item-list">
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Hướng dẫn mua hàng
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Hướng dẫn thanh toán
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Khiếu nại
+            </a>
+          </li>
+
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              FAQs
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-5 ml-5 footer__item">
+        <h1 class="block mb-3 text-xl font-bold footer__item-title">
+          ĐỊA CHỈ
+        </h1>
+        <ul class="mt-3 footer__item-list">
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              Tòa nhà FPT Polytechnic, P. Trịnh Văn Bô, Xuân Phương, Nam Từ
+              Liêm, Hà Nội, Việt Nam
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              https://caodang.fpt.edu.vn/
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+              098.172.5836
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+            </a>
+          </li>
+          <li class="footer__item-list-item">
+            <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    T
+    <!-- TÌM KIẾM  -->
+
+    <!-- <div class="border-t border-gray-200">
+      <div class="container flex flex-wrap items-center px-5 py-8 mx-auto">
+        <form class="flex flex-wrap justify-center search__form md:flex-no-wrap md:justify-start">
+          <input style="box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37)"
+            class="w-40 px-4 py-2 mr-2 text-base bg-gray-100 border rounded sm:w-64 sm:mr-4 focus:outline-none focus:border-orange-600"
+            placeholder="Nhập tên món ăn..." type="text" />
+          <button style="box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37)"
+            class="inline-flex px-6 py-2 text-white bg-orange-600 border-0 rounded focus:outline-none hover:bg-indigo-600">
+            Tìm kiếm
+          </button>
+        </form>
+        <span class="inline-flex justify-center w-full mt-6 lg:ml-auto lg:mt-0 md:justify-start md:w-auto">
+          <a class="text-gray-500">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+              viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-500">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5"
+              viewBox="0 0 24 24">
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+              </path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-500">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="w-5 h-5" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+            </svg>
+          </a>
+          <a class="ml-3 text-gray-500">
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+              <path stroke="none"
+                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+              <circle cx="4" cy="4" r="2" stroke="none"></circle>
+            </svg>
+          </a>
+        </span>
+      </div>
+    </div> -->
+
+    <!-- END TÌM KIẾM  -->
+
+    <div class="bg-gray-200">
+      <div class="container flex flex-col items-center justify-center px-5 py-4 mx-auto sm:flex-row">
+        <p class="text-sm text-center text-gray-500 sm:text-left">
+          © 2022 polyfood —
+          <a href="#" class="ml-1 text-gray-600" target="_blank" rel="noopener noreferrer">@fptpolytechnic</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
