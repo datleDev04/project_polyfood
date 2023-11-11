@@ -14,7 +14,7 @@
     $list_categories = loadall_categories();
     if (isset($url) && $url !="") {
         switch ($url) {
-            case "":
+            case "chitietsp":
 
                 break;
 
