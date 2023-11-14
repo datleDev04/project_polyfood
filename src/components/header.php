@@ -24,7 +24,7 @@
       <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
         <ul class="flex w-full justify-between gap-6 text-sm uppercase menu">
           <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Trang chủ</a></li>
-          <li><a class="font-bold text-[16px] hover:text-orange-700" href="product.php">Sản Phẩm</a></li>
+          <li><a class="font-bold text-[16px] hover:text-orange-700" href="index.php?url=product">Sản Phẩm</a></li>
           <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Giỏ hàng</a></li>
           <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Tài khoản</a></li>
           <li>

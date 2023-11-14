@@ -2,7 +2,7 @@
 <?php
 
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=polyfood1;charset=utf8";
+    $dburl = "mysql:host=localhost;port=3307;dbname=polyfood1;charset=utf8";
     $username = 'root';
     $password = '';
 

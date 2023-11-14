@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PolyFood</title>
+    <link rel="stylesheet" href="src/css/index.css">
+    <link rel="stylesheet" href="src/css/base.css">
+    <script src="src/Javascript/main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+</head>
+
+<body class="font-montserrat min-w-[170px]">
+    <header class="sticky top-0 z-50 hidden text-gray-700 bg-white border-b border-gray-200 lg:block">
+        <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
+            <a class="flex items-center mb-4 font-medium font title-font md:mb-0" href="#" target="_blank">
+                <img class="max-w-[100px] max-h-[150px]" src="./src/assets/logo/logo.jpg" alt="">
+            </a>
+            <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+                <ul class="flex w-full justify-between gap-6 text-sm uppercase menu">
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Trang chủ</a></li>
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Giới thiệu</a></li>
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="product.php">Sản Phẩm</a></li>
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Blog</a></li>
+                    <li>
+                        <div class="relative inline-block text-left group">
+                            <div>
+                                <button type="button" id="menu-drop" aria-expanded="true" aria-haspopup="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="setting"><path fill="#200E32" d="M10.2143,0.0004 C10.7643,-0.0096 11.2853,0.1894 11.6743,0.5704 C12.0653,0.9394 12.2743,1.4504 12.2743,1.9904 C12.2743,3.0904 13.1843,3.9814 14.3153,3.9814 C14.6643,3.9814 15.0143,3.8804 15.3253,3.7104 C16.2943,3.1894 17.5043,3.5204 18.0543,4.4504 L18.0543,4.4504 L18.7353,5.6204 C18.9053,5.9204 19.0043,6.2604 19.0043,6.6104 C19.0043,7.3204 18.6153,7.9814 17.9853,8.3304 C17.6743,8.5004 17.4143,8.7604 17.2353,9.0614 C16.7043,10.0004 17.0353,11.1894 17.9853,11.7314 C18.9443,12.2804 19.2743,13.4814 18.7353,14.4304 L18.7353,14.4304 L18.0543,15.5614 C17.6943,16.1804 17.0243,16.5614 16.3043,16.5614 C15.9443,16.5614 15.5843,16.4704 15.2853,16.2904 C14.9643,16.1204 14.6153,16.0204 14.2643,16.0204 C13.7243,16.0204 13.2043,16.2314 12.8253,16.6104 C12.4343,16.9814 12.2243,17.4904 12.2243,18.0204 C12.2243,19.1104 11.3153,20.0004 10.1843,20.0004 L10.1843,20.0004 L8.8153,20.0004 C8.2743,20.0004 7.7643,19.7804 7.3943,19.4104 C7.0143,19.0304 6.8153,18.5304 6.8153,18.0104 C6.8153,16.9104 5.9143,16.0204 4.7853,16.0204 C4.4143,16.0204 4.0543,16.1204 3.7443,16.3114 C3.2743,16.5704 2.7143,16.6404 2.1943,16.5104 C1.6743,16.3704 1.2243,16.0304 0.9543,15.5804 L0.9543,15.5804 L0.3153,14.4504 C0.0143,13.9814 -0.0757,13.4204 0.0653,12.8904 C0.2043,12.3604 0.5653,11.9104 1.0543,11.6404 C1.3653,11.4704 1.6243,11.2204 1.8043,10.9104 C2.3253,9.9704 1.9943,8.7904 1.0543,8.2404 C0.1043,7.7004 -0.2257,6.5104 0.3153,5.5704 L0.3153,5.5704 L0.9543,4.4504 C1.2243,3.9814 1.6743,3.6404 2.2043,3.5004 C2.7353,3.3604 3.2943,3.4394 3.7643,3.7104 C4.0843,3.8804 4.4343,3.9704 4.7853,3.9704 C5.3253,3.9704 5.8443,3.7604 6.2243,3.3904 C6.6043,3.0204 6.8153,2.5104 6.8153,1.9904 C6.8153,0.8904 7.7243,0.0004 8.8543,0.0004 L8.8543,0.0004 Z M10.6153,7.4814 C9.5653,7.0504 8.3543,7.2804 7.5443,8.0704 C6.7443,8.8504 6.4943,10.0404 6.9343,11.0614 C7.3653,12.0904 8.3843,12.7604 9.5243,12.7604 L9.5243,12.7604 L9.5353,12.7604 C10.2853,12.7704 10.9853,12.4814 11.5143,11.9604 C12.0443,11.4504 12.3443,10.7504 12.3443,10.0204 C12.3543,8.9104 11.6643,7.9004 10.6153,7.4814 Z" transform="translate(2.5 2)"></path></svg>
+                    </button>
+                            </div>
+                            <div id="sub-menu-drop" class="absolute right-0 z-10 hidden w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg animate-down ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button"
+                                tabindex="-1">
+                                <div class="py-1" role="none">
+
+                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">
+                        Cài đặt tài khoản
+                      </a>
+                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">
+                        Trang quản trị 
+                      </a>
+                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">
+                        Trang nhân viên
+                      </a>
+                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-1">
+                        Hỗ trợ
+                      </a>
+                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-2">
+                        Đơn hàng của tôi
+                      </a>
+                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-2">
+                        Đổi mật khẩu
+                      </a>
+                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-2">
+                        Quên mật khẩu
+                      </a>
+                                    <form method="POST" action="#" role="none">
+                                        <button type="submit" class="hover:bg-slate-300 block w-full px-4 py-2 text-sm text-left text-gray-700 uppercase" role="menuitem" tabindex="-1" id="menu-item-3">
+                          Đăng xuất
+                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="max-w-6xl mx-auto mt-10">
+
+        <div class="grid gap-12 p-6 bg-white rounded-lg shadow-md md:grid-cols-2">
+            <div class="rounded-lg">
+                <img src="src/assets/images/layout/banhmithit.jpg" alt="" class="rounded-xl">
+            </div>
+            <div class="">
+                <form action="../cart/index.php?btn_order" method="POST">
+                    <input type="hidden" name="product_id" id="product_id" value="<?= $items['product_id'] ?>">
+                    <input type="hidden" name="product_name" id="product_name" value="<?= $items['product_name'] ?>">
+                    <input type="hidden" name="price" id="price" value="<?= $items['price'] ?>">
+                    <input type="hidden" name="image" id="image" value="<?= $items['image'] ?>">
+
+                    <div class="text-3xl font-bold text-gray-700">
+                        Bánh
+                    </div>
+                    <div class="flex items-center py-4 space-x-2 ">
+                        <p class="text-sm text-gray-500">
+                            <!-- <?php
+                            $avg = avg_feedbacks($items['product_id']);
+                            if ($avg == 0) {
+                                echo "Chưa có đánh giá";
+                            } else if ($avg <= 1) {
+                                echo "★";
+                            } else if (1 < $avg && $avg <= 2) {
+                                echo "★★";
+                            } else if (2 < $avg && $avg <= 3) {
+                                echo "★★★";
+                            } else if (3 < $avg && $avg <= 4) {
+                                echo "★★★★";
+                            } else if (4 < $avg && $avg <= 5) {
+                                echo "★★★★★";
+                            }
+
+                            ?> -->
+                            ★★★★★
+                        </p>
+                        <p class="text-sm text-orange-500">/</p>
+                        <p class="text-sm text-gray-500">
+                            <!-- <?= $count ?> -->
+                            Phản hồi
+                        </p>
+                    </div>
+                    <div class="flex space-x-2 text-3xl text-orange-600">
+
+                        <strike class="text-3xl font-light text-gray-400">20.000
+                            đ</strike>
+                        <p class="flex gap-2 text-3xl"> <span></span> 15.000đ
+                    </div>
+
+                    <div class="py-4">
+                        <img style="width:96px" src="../IMG/logo.png" alt="">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-orange-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                        </svg>
+
+                        <p class="font-light text-gray-500">
+                            Hỗ trợ tận tình , đồ ăn tận răng !
+                        </p>
+                    </div>
+                    <div class="flex items-center py-2 space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-orange-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                        </svg>
+
+                        <p class="font-light text-gray-500">
+                            Đồ ăn sẵn sàng , điện thoại reo
+                        </p>
+                    </div>
+                    <button class="flex items-center px-5 py-2 mt-5 text-sm text-white bg-orange-600 rounded-lg">
+                        <p class="px-2">Thêm vào giỏ</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto mt-20">
+        <div class="flex items-center justify-center space-x-4 button-box">
+            <div id="btn" class="inlinde-block md:mr-44  text-xl text-center rounded-xl md:w-[90px] md:h-[48px] border-red-500 bg-orange-500">
+            </div>
+            <button type="button" class="toggle-btn" onclick="leftClick()"><span id="trai" class="inline-block px-8 py-2 text-xl text-white rounded-xl sili">Mô tả</span></button>
+            <button type="button" class="toggle-btn" onclick="rightClick()"><span id="phai" class="inline-block px-8 py-2 text-xl text-red-500 rounded-xl ">Nhận xét ( <?= $count ?>
+                    )</span></button>
+        </div>
+        <p class="px-6 py-6 font-light text-gray-500 text-md" id="description">
+            Bánh mì được xem như một loại thức ăn nhanh bình dân và thường được tiêu thụ trong bữa sáng hoặc bất kỳ bữa phụ nào trong ngày. Là một món ăn mà những thực khách nước ngoài cũng phải hết sức khen ngợi. Do có bánh mì trở thành món ăn được rất nhiều người
+            ưa chuộng.
+        </p>
+        <div class="hidden px-16 py-12" id="comment">
+
+            <!-- <?php
+
+
+            $today = gmdate('Y-m-d');
+            $first_date = strtotime($today);
+
+
+            foreach ($user_feedbacks as $fb) :
+                $second_date = strtotime($fb['time_send']);
+                $datediff = abs($first_date - $second_date);
+                $count_date = floor($datediff / (24 * 60 * 60));
+            ?> -->
+
+            <!-- <div class="grid grid-cols-[48px,auto] gap-8">
+                <div class="rounded-full rounded-2 rounded-red-500 w-[48px] h-[48px]">
+                    <img src="<?= $CONTENT_URL ?>/images/users/<?= $fb['img_user'] ?>" style="border-radius:50%" alt="">
+                </div>
+                <div class="">
+                    <div class="flex items-center space-x-4">
+                        <h1 class="font-bold text-md">
+                            <?= $fb['name_user'] ?>
+                        </h1>
+                        <p class="text-gray-400 text-md">
+                            <?= $count_date < 30 ? $count_date . ' ngày' : floor($count_date / 30) . ' tháng' ?> trước
+                        </p>
+                    </div>
+                    <div class="text-yellow-500">
+
+                        <?php
+                            if ($fb['rate'] == 1) {
+                                echo '★';
+                            } else if ($fb['rate'] == 2) {
+                                echo '★★';
+                            } else if ($fb['rate'] == 3) {
+                                echo '★★★';
+                            } else if ($fb['rate'] == 4) {
+                                echo '★★★★';
+                            } else if ($fb['rate'] == 5) {
+                                echo '★★★★★';
+                            }
+
+                            ?>
+
+                    </div>
+                    <div class="text-md">
+                        <?= $fb['content'] ?>
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach; ?>
+
+            <form action="index.php?feedback" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="product_id" name="product_id" value="<?= $product_id ?>">
+                <?php
+                if (isset($_SESSION['user'])) { ?>
+
+                    <input type="hidden" id="user_id" name="user_id" value="<?= $_SESSION['user']['user_id'] ?>">
+                    <?php
+                }
+                ?>
+
+                        <div class=" grid grid-cols-[100px,auto]  mt-10">
+                            <div class="rounded-full flex items-center gap-5 rounded-2 rounded-red-500 w-[100px] h-[48px]">
+                                <img src="<?= $CONTENT_URL . '/images/users/' ?><?= isset($_SESSION['user']) ? $_SESSION['user']['image'] : 'user.png' ?>" alt="" class="rounded-full w-[48px] h-[48px]">
+                                <span class="text-gray-500 whitespace-nowrap">
+                            <?= isset($_SESSION['user']) ? $_SESSION['user']['name'] : 'Đăng nhập để bình luận' ?>
+                        </span>
+                            </div>
+                            <div class="mt-5 space-y-2">
+                                <div class="flex flex-col items-center py-4 space-x-4 lg:flex-row">
+                                    <fieldset class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                    </fieldset>
+                                    <p class="text-sm text-gray-500">(Vui lòng chọn đánh giá)</p>
+                                </div>
+                                <textarea id="note" name="note" placeholder="Điền đánh giá ...." class="md:w-[612px] md:h-[97px] border-2 rounded px-4 py-1"></textarea>
+                                <br>
+                                <?php
+                        if (isset($_SESSION['error'])) {
+                            $err = $_SESSION['error'];
+                            echo "<h5 class='text-red-500'>$err</h5>";
+                        }
+                        ?>
+                                    <button type="submit" class="px-10 py-2 text-white bg-orange-500 rounded">Gửi</button>
+                            </div>
+                        </div>
+
+            </form>
+        </div> -->
+    </section>
+    </section>
+    <section class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-orange-500">Có thể bạn cũng thích</h1>
+        <div class="grid grid-cols-2 gap-4 py-4 md:grid-cols-4">
+            <!-- <?php
+        require_once '/xampp/htdocs/polyfood/site/food/product/products_cate.php';
+        ?> -->
+
+            <form action="#" method="post">
+                <input type="hidden" value="31" id="product_id" name="product_id">
+                <input type="hidden" value="banhmithit.jpg" id="image" name="image">
+                <input type="hidden" value="20000" id="price" name="price">
+
+                <div class="p-4 shadow__products  rounded-2xl bg-white space-y-2">
+                    <a href="#"><img class="block mx-auto min-w-[150px] h-[150px] lg:h-[180px] object-cover object-contain" src="src/assets/images/layout/banhmithit.jpg" alt=""> </a>
+                    <h2 class=" space-y-2">Bánh mì thịt</h2>
+                    <p class="text-xs font-semibold flex justify-between  text-red-500 mt-2">
+                        <span class="text-sm text-red-600">★★★★★</span>20.000đ
+                    </p>
+                    <p class="leading-relaxed text-xs limited__content-2 h-10">
+                        Bánh mì được xem như một loại thức ăn nhanh bình dân và thường được tiêu thụ trong bữa sáng hoặc bất kỳ bữa phụ nào trong ngày. Là một món ăn mà những thực khách nước ngoài cũng phải hết sức khen ngợi. Do có bánh mì trở thành món ăn được rất nhiều người
+                        ưa chuộng. </p>
+                    <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                        Thêm vào giỏ
+        
+                    </button>
+                </div>
+            </form>
+            <form action="#" method="post">
+                <input type="hidden" value="31" id="product_id" name="product_id">
+                <input type="hidden" value="banhmithit.jpg" id="image" name="image">
+                <input type="hidden" value="20000" id="price" name="price">
+
+                <div class="p-4 shadow__products  rounded-2xl bg-white space-y-2">
+                    <a href="#"><img class="block mx-auto min-w-[150px] h-[150px] lg:h-[180px] object-cover object-contain" src="src/assets/images/layout/banhmithit.jpg" alt=""> </a>
+                    <h2 class=" space-y-2">Bánh mì thịt</h2>
+                    <p class="text-xs font-semibold flex justify-between  text-red-500 mt-2">
+                        <span class="text-sm text-red-600">★★★★★</span>20.000đ
+                    </p>
+                    <p class="leading-relaxed text-xs limited__content-2 h-10">
+                        Bánh mì được xem như một loại thức ăn nhanh bình dân và thường được tiêu thụ trong bữa sáng hoặc bất kỳ bữa phụ nào trong ngày. Là một món ăn mà những thực khách nước ngoài cũng phải hết sức khen ngợi. Do có bánh mì trở thành món ăn được rất nhiều người
+                        ưa chuộng. </p>
+                    <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                        Thêm vào giỏ
+        
+                    </button>
+                </div>
+            </form>
+            <form action="#" method="post">
+                <input type="hidden" value="31" id="product_id" name="product_id">
+                <input type="hidden" value="banhmithit.jpg" id="image" name="image">
+                <input type="hidden" value="20000" id="price" name="price">
+
+                <div class="p-4 shadow__products  rounded-2xl bg-white space-y-2">
+                    <a href="#"><img class="block mx-auto min-w-[150px] h-[150px] lg:h-[180px] object-cover object-contain" src="src/assets/images/layout/banhmithit.jpg" alt=""> </a>
+                    <h2 class=" space-y-2">Bánh mì thịt</h2>
+                    <p class="text-xs font-semibold flex justify-between  text-red-500 mt-2">
+                        <span class="text-sm text-red-600">★★★★★</span>20.000đ
+                    </p>
+                    <p class="leading-relaxed text-xs limited__content-2 h-10">
+                        Bánh mì được xem như một loại thức ăn nhanh bình dân và thường được tiêu thụ trong bữa sáng hoặc bất kỳ bữa phụ nào trong ngày. Là một món ăn mà những thực khách nước ngoài cũng phải hết sức khen ngợi. Do có bánh mì trở thành món ăn được rất nhiều người
+                        ưa chuộng. </p>
+                    <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                        Thêm vào giỏ
+        
+                    </button>
+                </div>
+            </form>
+            <form action="#" method="post">
+                <input type="hidden" value="31" id="product_id" name="product_id">
+                <input type="hidden" value="banhmithit.jpg" id="image" name="image">
+                <input type="hidden" value="20000" id="price" name="price">
+
+                <div class="p-4 shadow__products  rounded-2xl bg-white space-y-2">
+                    <a href="#"><img class="block mx-auto min-w-[150px] h-[150px] lg:h-[180px] object-cover object-contain" src="src/assets/images/layout/banhmithit.jpg" alt=""> </a>
+                    <h2 class=" space-y-2">Bánh mì thịt</h2>
+                    <p class="text-xs font-semibold flex justify-between  text-red-500 mt-2">
+                        <span class="text-sm text-red-600">★★★★★</span>20.000đ
+                    </p>
+                    <p class="leading-relaxed text-xs limited__content-2 h-10">
+                        Bánh mì được xem như một loại thức ăn nhanh bình dân và thường được tiêu thụ trong bữa sáng hoặc bất kỳ bữa phụ nào trong ngày. Là một món ăn mà những thực khách nước ngoài cũng phải hết sức khen ngợi. Do có bánh mì trở thành món ăn được rất nhiều người
+                        ưa chuộng. </p>
+                    <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                        Thêm vào giỏ
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+    <footer class="pt-24 mx-auto text-gray-700">
+        <section class="grid w-full grid-cols-2 gap-4 px-8 md:grid-cols-3 lg:grid-cols-4 md:px-14 lg:px-20">
+            <div class="ml-5 footer__item-logo">
+                <img class="h-16" src="src/assets/logo/logo.jpg" alt="logo" />
+                <p class="footer-item-title--desc mt-4 text-gray-500 text-sm max-w-[220px]">
+                    Website được phát triển bởi đội ngũ sinh viên FPT Polytechnic.
+                </p>
+            </div>
+            <div class="mb-5 ml-5 footer__item">
+                <h1 class="block mb-3 text-xl font-bold footer__item-title">
+                    Liên hệ
+                </h1>
+                <ul class="mt-3 footer__item-list">
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Giới thiệu
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Góp ý
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Tuyển dụng
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Điều khoản
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mb-5 ml-5 footer__item">
+                <h1 class="block mb-3 text-xl font-bold footer__item-title">
+                    Hỗ trợ
+                </h1>
+                <ul class="mt-3 footer__item-list">
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Hướng dẫn mua hàng
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Hướng dẫn thanh toán
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Khiếu nại
+                        </a>
+                    </li>
+
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            FAQs
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-5 ml-5 footer__item">
+                <h1 class="block mb-3 text-xl font-bold footer__item-title">
+                    ĐỊA CHỈ
+                </h1>
+                <ul class="mt-3 footer__item-list">
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            Tòa nhà FPT Polytechnic, P. Trịnh Văn Bô, Xuân Phương, Nam Từ
+                            Liêm, Hà Nội, Việt Nam
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            https://caodang.fpt.edu.vn/
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                            098.172.5836
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                        </a>
+                    </li>
+                    <li class="footer__item-list-item">
+                        <a href="#" class="block mb-3 text-sm text-gray-500 footer__item-list-item-link">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="border-t border-gray-200">
+            <div class="container flex flex-wrap items-center px-5 py-8 mx-auto">
+                <div>
+                    <div class="container flex flex-col items-center justify-center px-5 py-4 mx-auto sm:flex-row">
+                        <p class="text-sm text-center text-gray-500 sm:text-left">
+                            © 2022 polyfood —
+                            <a href="#" class="ml-1 text-gray-600" target="_blank" rel="noopener noreferrer">@fptpolytechnic</a>
+                        </p>
+                    </div>
+                </div>
+                <span class="inline-flex justify-center w-full mt-6 lg:ml-auto lg:mt-0 md:justify-start md:w-auto">
+                    <a class="text-gray-500">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a class="ml-3 text-gray-500">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a class="ml-3 text-gray-500">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                        </svg>
+                    </a>
+                    <a class="ml-3 text-gray-500">
+                        <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
+                            </path>
+                            <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                        </svg>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </footer>
+    <a style="box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37)" id="cart" href="#" class="fixed right-0 z-50 flex items-center justify-center w-16 h-16 mb-8 mr-8 text-gray-800 bg-orange-600 border border-gray-300 rounded-full shadow-sm sm:w-20 sm:h-20 animate-bounce bottom-8"
+        target="_blank"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="text-white w-9 h-9">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
+    </svg>
+</a>
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+
+</html>
