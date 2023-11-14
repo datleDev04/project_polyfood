@@ -1,5 +1,3 @@
-<?php require_once"public/public.php";?>
-
 <section id="category" class="text-gray-700 border-t border-gray-200">
     <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col w-full mb-20 text-center">
@@ -13,10 +11,10 @@
         <div class="flex flex-wrap -m-2">
 
             <?php foreach($list_categories as $categories) {
-                $img = $categories_img.$categories['category_image'];
+                $img = "src/assets/images/categories/".$categories['category_image'];
                 echo '
                 <div class="w-full p-2 lg:w-1/3 md:w-1/2 cursor-pointer">
-                <a href="'.$detail_product.$categories['category_id'].'">
+                <a href="?detail_product&category_id='.$categories['category_id'].'">
                         <div class="flex items-center h-full p-4 border border-gray-200 rounded-lg">
                         <img alt="team" class="flex-shrink-0 object-cover object-center w-16 h-16 mr-4" src="'.$img.'" />
                     <div class="flex-grow">
@@ -38,3 +36,6 @@
         </div>
     </div>
 </section>
+
+
+
