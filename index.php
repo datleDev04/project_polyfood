@@ -6,9 +6,6 @@
     require_once"models/product.php";
     require_once"models/user.php";
     require_once"models/product.php";
-    // require_once"/controllers/admin_controller";
-    // require_once"/controllers/admin_controller";
-    // require_once"/controllers/staff_controller";
 
     require_once"src/components/header.php";
     $url = isset($_GET['url']) ? $_GET['url'] : 'trang_chu';
