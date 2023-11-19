@@ -23,7 +23,7 @@
             </a>
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
                 <ul class="flex w-full justify-between gap-6 text-sm uppercase menu">
-                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=home">Trang chủ</a></li>
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=trangchu">Trang chủ</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="product.php">Sản Phẩm</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Giỏ hàng</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Tài khoản</a></li>
@@ -48,10 +48,6 @@
                                         Trang quản trị
                                     </a>
                                     <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
-                                        role="menuitem" tabindex="-1" id="menu-item-0">
-                                        Trang nhân viên
-                                    </a>
-                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
                                         role="menuitem" tabindex="-1" id="menu-item-1">
                                         Hỗ trợ
                                     </a>
@@ -59,11 +55,13 @@
                                         role="menuitem" tabindex="-1" id="menu-item-2">
                                         Đơn hàng của tôi
                                     </a>
+                                    <?php if (isset($_SESSION['user'])) {
+                                    echo '
                                     <a href="?url=capnhattk"
                                         class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
                                         role="menuitem" tabindex="-1" id="menu-item-2">
                                         Cài đặt tài khoản
-                                    </a>
+                                    </a>';} ?>
                                     <form method="POST" action="?url=quenmk">
                                 <?php if (!isset($_SESSION['user'])) {
                                 echo " <button type='submit' class='text-gray-700 hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>Quên mật khẩu</button>";} ?>

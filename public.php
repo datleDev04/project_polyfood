@@ -1,8 +1,8 @@
 <?php
-    $IMAGE_DIR ="./src/assets/images/";
+    $IMAGE_DIR ="src/assets/images/";
     $MESSAGE="";
 
-        $homepage = " <a href='?url=trangchu'>Đi tới trang chủ</a>";
+    $homepage = " <a href='?url=trangchu'>Đi tới trang chủ</a>";
 
     function exist_param($fieldname){
         return array_key_exists($fieldname, $_REQUEST);
@@ -65,6 +65,5 @@
             }
         }
         $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"];
-        header("location: $SITE_URL/account/sign-in.php");
     }
 ?>
