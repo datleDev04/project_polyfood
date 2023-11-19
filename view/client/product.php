@@ -41,10 +41,9 @@
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
 
-                <?php foreach ($listall_product as $listone_product) : ?>
-                    <?php extract($listone_product); ?>
+                <?php foreach ($listall_product as $listall_product) : ?>
+                    <?php extract($listall_product); ?>
                     <?php
-                    
                     $hinh = $img_path . $image;
                     ?>
                     <div style="
@@ -54,12 +53,12 @@
               -webkit-backdrop-filter: blur(4px);
               border-radius: 10px;
               border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
-                        <a class="mt-2" href="#">
+                        <a class="mt-2" href="index.php?url=detail_product&product_id=<?=$product_id?>">
                             <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center" src="<?= $hinh ?>" alt="" class="rounded">
                             <h2 class="truncate mt-3 font-medium"><?= $product_name ?></h2>
                             <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
                                 <span class="text-xs"> </span>
-                                <?= $price ?>đ
+                                <?= number_format($price, 0, ",", ".") ?>đ
                             </p>
                             <p class="leading-relaxed text-gray-700 mt-1 text-xs limited__content-2 h-10">
                                 <?= $detail ?>
