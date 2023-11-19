@@ -4,6 +4,7 @@ require_once 'view/client/detail_product.php';
 
 <?php foreach ($product_cungloai as $product_cungloai) {
     extract($product_cungloai);
+    $hinh = $img_path . $image;
 }?>
     <form action="" method="post">
         <!-- <input type="hidden" value="<?= $product_id ?>" id="product_id" name="product_id">
