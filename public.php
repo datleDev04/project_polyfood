@@ -1,6 +1,7 @@
 <?php
     $IMAGE_DIR ="src/assets/images/";
     $MESSAGE="";
+    $img_path="src/assets/images/products/";
 
     $homepage = " <a href='?url=trangchu'>Đi tới trang chủ</a>";
 
