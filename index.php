@@ -6,6 +6,8 @@
     require_once"models/product.php";
     require_once"models/user.php";
     require_once"models/product.php";
+    require_once"models/feedbacks.php";
+    
 
     require_once"src/components/header.php";
     $url = isset($_GET['url']) ? $_GET['url'] : 'trang_chu';
@@ -196,21 +198,7 @@
                 include_once"src/components/account/capnhattk.php";
                 break;
             
-                case "detail_product":
-                    if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
-                        $product_id = $_GET['product_id'];
-                    } else {
-                        $product_id = "";
-                    }
-                    if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
-                        $id = $_GET['product_id'];
-                        $listone_product = loadone_product($product_id);
-                        extract($listone_product);
-                        $product_cungloai = load_product_cungloai($product_id, $category_id);
-                    }
-                    $listone_product = loadone_product($product_id);
-                    require_once "view/client/detail_product.php";
-                    break;
+                
                 case "allproduct":
                     // danh mục
                     $listall_category = loadall_category();
@@ -231,6 +219,51 @@
                     require_once "view/client/product.php";
                     break;
 
+                case "detail_product":
+                        if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
+                            $product_id = $_GET['product_id'];
+                        } else {
+                            $product_id = "";
+                        }
+                        if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
+                            $id = $_GET['product_id'];
+                            $listone_product = loadone_product($product_id);
+                            extract($listone_product);
+                            $product_cungloai = load_product_cungloai($product_id, $category_id);
+                        }
+                        $listone_product = loadone_product($product_id);
+                        extract($listone_product);
+    
+                        $user_feedbacks = join_feedbacks_user($product_id);
+                        $count = count_feedbacks($product_id);
+                        $price_discount = $price * (1 - $discount / 100);
+    
+                        require_once "view/client/detail_product.php";
+                    break;
+                
+                case "feedback":
+                    extract($_REQUEST);
+                    $user_id = $_SESSION['user']['user_id'];
+                    if ( $note == "") {
+                        echo '<script>alert("Bạn chưa điền đầy đủ thông tin Feedback!");</script>';
+                    
+                    }else{
+                        insert_feedbacks($user_id, $product_id, $rating, $note);
+                        echo '<script>alert("Thêm Feeback thành công!");</script>';
+                    }
+
+                    $listone_product = loadone_product($product_id);
+                    extract($listone_product);
+                    $user_feedbacks = join_feedbacks_user($product_id);
+                    $count = count_feedbacks($product_id);
+                    $price_discount = $price * (1 - $discount / 100);
+
+
+
+                    $product_cungloai = load_product_cungloai($product_id, $category_id);
+                    require_once "view/client/detail_product.php";
+                    
+                    break;
 
                 
                 default:

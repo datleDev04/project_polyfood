@@ -14,7 +14,7 @@
                 $img = "src/assets/images/categories/".$categories['category_image'];
                 echo '
                 <div class="w-full p-2 lg:w-1/3 md:w-1/2 cursor-pointer">
-                <a href="?detail_product&category_id='.$categories['category_id'].'">
+                <a href="?url=product&category_id='.$categories['category_id'].'">
                         <div class="flex items-center h-full p-4 border border-gray-200 rounded-lg">
                         <img alt="team" class="flex-shrink-0 object-cover object-center w-16 h-16 mr-4" src="'.$img.'" />
                     <div class="flex-grow">
