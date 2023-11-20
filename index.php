@@ -230,8 +230,11 @@
                     $listall_product = loadall_product($category_id);
                     require_once "view/client/product.php";
                     break;
+
+
+                
                 default:
-            require_once"view/client/home.php";
+                    require_once"view/client/home.php";
                 break;
         }
     }else {
