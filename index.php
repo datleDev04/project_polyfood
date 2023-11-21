@@ -7,14 +7,6 @@ require_once "models/product.php";
 require_once "tongquan.php";
 require_once "models/feedbacks.php";
 require_once "global.php";
-
-// require_once"/controllers/admin_controller";
-// require_once"/controllers/admin_controller";
-// require_once"/controllers/staff_controller";
-// $listone_product = loadone_product($product_id);
-// $listone_category = loadone_category($category_id);
-//thế product_id hiện đang = gì, và lấy từ đâu ?
-
 require_once "src/components/header.php";
 $url = isset($_GET['url']) ? $_GET['url'] : 'trang_chu';
 
@@ -52,8 +44,6 @@ if (isset($url) && $url != "") {
             } else {
                 $category_id = "";
             }
-            // $listall_product_cate = loadall_product_category($category_id);
-            // echo $listall_product_cate;
             $listall_product = loadall_product($category_id);
             require_once "view/client/product.php";
             break;

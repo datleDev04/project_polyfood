@@ -1,13 +1,13 @@
 <?php
-extract($_REQUEST);
-$cates = loadall_category();
-if (exist_param("category_id")) {
-    $items = products_select_by_categories($category_id);
-} else if (exist_param("search_product")) {
-    $items = products_select_keyword($keyword);
-} else {
-    $items = loadall_category();
-}
+// extract($_REQUEST);
+// $cates = loadall_category();
+// if (exist_param("category_id")) {
+//     $items = products_select_by_categories($category_id);
+// } else if (exist_param("search_product")) {
+//     $items = products_select_keyword($keyword);
+// } else {
+//     $items = loadall_category();
+// }
 ?>
 
 
