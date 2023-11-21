@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once"models/pdo.php";
-    require_once"public/public.php";
+    require_once"public.php";
     require_once"models/categories.php";
     require_once"models/product.php";
     require_once"models/user.php";
