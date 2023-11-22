@@ -14,6 +14,7 @@
      * @param string $target_dir thư mục lưu file
      * @return tên file upload
      */
+
     function save_file($fieldname, $target_dir){ // Hàm lưu file, $fieldname là tên trường file, $target_dir là thư mục lưu file
         $file_uploaded = $_FILES[$fieldname]; // mảng chứa thông tin file
         $file_name = basename($file_uploaded["name"]); // lấy tên file
@@ -68,3 +69,23 @@
         $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"];
     }
 ?>
+
+
+
+
+<script>
+    function FeedbackErrors_Alert() {
+            Swal.fire({
+                title: 'Bạn chưa nhập đầy đủ thông tin!',
+                text: 'Mời bạn tiếp tục đánh giá',
+                icon: 'error'
+            });
+        }
+    function FeedbackSuccess_Alert() {
+            Swal.fire({
+                title: 'Feedback thành công!',
+                text: 'Cảm ơn bạn đã góp ý. Chúng tôi sẽ xem xét thông tin của bạn.',
+                icon: 'success'
+            });
+        }
+</script>

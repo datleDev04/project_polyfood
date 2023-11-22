@@ -28,7 +28,7 @@
             <img src="<?= $hinh ?>" alt="" class="rounded-xl">
         </div>
         <div class="">
-            <form action="#" method="POST">
+            <form action="?url=addToCart" method="POST">
                 <input type="hidden" name="product_id" id="product_id" value="<?= $listone_product['product_id'] ?>">
                 <input type="hidden" name="product_name" id="product_name" value="<?= $listone_product['product_name'] ?>">
                 <input type="hidden" name="price" id="price" value="<?= $listone_product['price'] ?>">
@@ -61,7 +61,7 @@
                         Phản hồi
                     </p>
                 </div>
-                <div class="flex space-x-2 text-3xl text-orange-600">
+                <div class="flex space-x-2 text-3xl text-orange-600 my-5">
 
                         <strike class="text-3xl font-light text-gray-400"><?= number_format($price, 0, ",", ".") ?>
                             đ</strike>
@@ -69,10 +69,8 @@
                             <?= number_format($price_discount, 0, ",", ".") ?>đ
                     </div>
 
-                <div class="py-4">
-                    <img style="width:96px" src="../IMG/logo.png" alt="">
-                </div>
-                <div class="flex items-center space-x-2">
+                
+                <div class="flex items-center space-x-2 ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-orange-500">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
                     </svg>
@@ -90,12 +88,20 @@
                         Đồ ăn sẵn sàng , điện thoại reo
                     </p>
                 </div>
-                <button class="flex items-center px-5 py-2 mt-5 text-sm text-white bg-orange-600 rounded-lg">
+                <!-- <button class="flex items-center px-5 py-2 mt-5 text-sm text-white bg-orange-600 rounded-lg">
                     <p class="px-2">Thêm vào giỏ</p>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                     </svg>
-                </button>
+                </button> -->
+                <div class ="flex justify-start">
+                    <a href="?url=addToCart" class="flex items-center px-5 py-2 mt-5 text-sm text-white bg-orange-600 rounded-lg">
+                        <p class="px-2 font-bold text-base">Thêm vào giỏ</p>
+                    </a>
+                    <a href="?url=order" class="flex items-center px-5 py-2 mt-5 ml-5 text-sm text-white bg-orange-600 rounded-lg">
+                        <p class="px-2 font-bold text-base">Mua Ngay</p>
+                    </a>
+                </div>
             </form>
         </div>
     </div>
@@ -219,7 +225,7 @@
 </section>
 
 <script>
-    var description = document.getElementById('description');
+var description = document.getElementById('description');
 var comment = document.getElementById('comment');
 var btn = document.getElementById('btn');
 var trai = document.getElementById('trai');

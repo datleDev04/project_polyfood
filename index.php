@@ -7,6 +7,7 @@
     require_once"models/user.php";
     require_once"models/product.php";
     require_once"models/feedbacks.php";
+    require_once"models/cart.php";
     
 
     require_once"src/components/header.php";
@@ -242,16 +243,17 @@
                     break;
                 
                 case "feedback":
-                    extract($_REQUEST);
                     $user_id = $_SESSION['user']['user_id'];
-                    if ( $note == "") {
-                        echo '<script>alert("Bạn chưa điền đầy đủ thông tin Feedback!");</script>';
-                    
-                    }else{
-                        insert_feedbacks($user_id, $product_id, $rating, $note);
-                        echo '<script>alert("Thêm Feeback thành công!");</script>';
-                    }
-
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        extract($_REQUEST);
+                        if ( $note == "") {
+                            echo"<script> FeedbackErrors_Alert() ;</script>";
+                        }else{
+                            insert_feedbacks($user_id, $product_id, $rating, $note);
+                            echo "<script>FeedbackSuccess_Alert();</script>;";
+                        
+                        }
+                    }   
                     $listone_product = loadone_product($product_id);
                     extract($listone_product);
                     $user_feedbacks = join_feedbacks_user($product_id);
@@ -264,7 +266,94 @@
                     require_once "view/client/detail_product.php";
                     
                     break;
+                
+                case "cart":
+                    if (!isset($_SESSION['my-cart'])) {
+                        $_SESSION['my-cart'] =[];
+                    }
+                    $total_price = 0;
+                    $count =0;
+                    products_select_all();
+                    foreach($_SESSION['my-cart'] as $cart){
+                        $total_price += $cart['total_price'];
+                        $count += 1;
+                    }
+                    require_once"view/client/cart.php";
+                    break;
 
+                case 'addToCart':
+                    if (!isset($_SESSION['my-cart'])) {
+                        $_SESSION['my_cart'] = [];
+                    }
+                    extract($_REQUEST);
+                    $product_id = $_POST['product_id'];
+                    $newProduct_toCart = products_select_by_id($product_id);
+                    extract($newProduct_toCart);
+                    $image = $_POST['image'];
+                    $total_price = $price * (1 - $discount / 100) * $quantity;
+                    $status = 0;
+
+
+                    if (!empty($_SESSION['my_cart'])) {
+                        foreach ($_SESSION['my_cart'] as  $cart => $key) {
+                            if ($product_id == $key['product_id']) {
+                                $add = false;
+                                break;
+                            } else {
+                                $add = true;
+                            }
+                        }
+                        if ($add) {
+                            $quantity = 1;
+                            $add_orders = [
+                                'product_id' => $product_id,
+                                'image' => $image,
+                                'quantity' => $quantity,
+                                'total_price' => $total_price,
+                                'status' => $status,
+                                'product_name' => $product_name,
+                                'price' => $price,
+                                'discount' => $discount,
+                                'category_id' => $category_id,
+                                'detail' => $detail,
+                            ];
+                            array_push($_SESSION['my_cart'], $add_orders);
+                        } else {
+                
+                            $items_tmp = products_select_by_id($product_id);
+                            extract($items_tmp);
+                            $_SESSION['my_cart'][$cart]['quantity'] += 1;
+                            $quantity = $_SESSION['my_cart'][$cart]['quantity'];
+                            update_product_cart($quantity, $quantity * $price, $product_id);
+                        }
+                    } else {
+                        $quantity = 1;
+                        $add_orders = [
+                            'product_id' => $product_id,
+                            'image' => $image,
+                            'quantity' => $quantity,
+                            'total_price' => $total_price,
+                            'status' => $status,
+                            'product_name' => $product_name,
+                            'price' => $price,
+                            'discount' => $discount,
+                            'category_id' => $category_id,
+                            'detail' => $detail,
+                            'note1'=>''
+                        ];
+                        var_dump($add_orders);
+                        array_push($_SESSION['my_cart'], $add_orders);
+                    }
+                    var_dump('dsadsa',$_SESSION['my-cart'],'đây là caat');
+                    $total_price = 0;
+                        $count = 0;
+                        products_select_all();
+                        foreach ($_SESSION['my_cart'] as $cart) {
+                            $total_price += $cart['total_price'];
+                            $count += 1;
+                        }
+                    require_once"view/client/cart.php";
+                    break;
                 
                 default:
                     require_once"view/client/home.php";
