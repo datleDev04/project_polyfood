@@ -14,6 +14,7 @@
      * @param string $target_dir thư mục lưu file
      * @return tên file upload
      */
+
     function save_file($fieldname, $target_dir){ // Hàm lưu file, $fieldname là tên trường file, $target_dir là thư mục lưu file
         $file_uploaded = $_FILES[$fieldname]; // mảng chứa thông tin file
         $file_name = basename($file_uploaded["name"]); // lấy tên file
@@ -67,4 +68,51 @@
         }
         $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"];
     }
+
+    function check_signIn(){
+        if (!isset($_SESSION['user'])) {
+            echo" <script>NotSingIn()</script>";
+        }
+    }
 ?>
+
+
+
+
+<script>
+    function FeedbackErrors_Alert() {
+            Swal.fire({
+                title: 'Bạn chưa nhập đầy đủ thông tin!',
+                text: 'Mời bạn tiếp tục đánh giá',
+                icon: 'error'
+            });
+        }
+    function FeedbackSuccess_Alert() {
+            Swal.fire({
+                title: 'Feedback thành công!',
+                text: 'Cảm ơn bạn đã góp ý. Chúng tôi sẽ xem xét thông tin của bạn.',
+                icon: 'success'
+            });
+        }
+    function NotSingIn() {
+        Swal.fire({
+            title: 'BẠN CHƯA ĐĂNG NHẬP  ',
+            text: 'Vui lòng đăng nhập để có thể thêm sản phẩm vào giỏ hàng.',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Đăng nhập',
+            cancelButtonText: 'Đóng',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Xử lý đăng ký ở đây
+                // Nếu người dùng đăng ký thành công, bạn có thể thêm sản phẩm vào giỏ hàng.
+                // Swal.fire('Đăng ký thành công!', 'Bây giờ bạn có thể thêm vào giỏ hàng.', 'success');
+                window.location.href = '?url=dangnhap';
+            } else {
+                window.location.href = '?url=trangchu';
+
+            }
+        });
+    }
+</script>

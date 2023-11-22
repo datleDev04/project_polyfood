@@ -6,6 +6,9 @@
     require_once"models/product.php";
     require_once"models/user.php";
     require_once"models/product.php";
+    require_once"models/feedbacks.php";
+    require_once"models/cart.php";
+    
 
     require_once"src/components/header.php";
     $url = isset($_GET['url']) ? $_GET['url'] : 'trang_chu';
@@ -33,6 +36,9 @@
                             $MESSAGE = "Đăng nhập thành công!";
                             $_SESSION["user"] = $user;
                             $MESSAGE = "Đăng nhập thành thành công!";
+                            if (!isset($_SESSION['my_cart'])) {
+                                $_SESSION['my_cart'] =[];
+                            }
                             echo "<meta http-equiv='refresh' content='0;URL=?url=trangchu'/>";
 
                         } else {
@@ -109,6 +115,8 @@
                         try {
                             insert_users($user_name, $password, $name, $email, $phone, $image, $role_id);
                             $MESSAGE = "Đăng ký thành viên thành công!";
+
+                                $_SESSION['my_cart'] =[];
                             // header("location: " . "$SITE_URL/account/sign-in.php");
                             // die;
                         } catch (Exception $exc) {
@@ -196,21 +204,7 @@
                 include_once"src/components/account/capnhattk.php";
                 break;
             
-                case "detail_product":
-                    if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
-                        $product_id = $_GET['product_id'];
-                    } else {
-                        $product_id = "";
-                    }
-                    if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
-                        $id = $_GET['product_id'];
-                        $listone_product = loadone_product($product_id);
-                        extract($listone_product);
-                        $product_cungloai = load_product_cungloai($product_id, $category_id);
-                    }
-                    $listone_product = loadone_product($product_id);
-                    require_once "view/client/detail_product.php";
-                    break;
+                
                 case "allproduct":
                     // danh mục
                     $listall_category = loadall_category();
@@ -230,8 +224,172 @@
                     $listall_product = loadall_product($category_id);
                     require_once "view/client/product.php";
                     break;
+
+                case "detail_product":
+                        if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
+                            $product_id = $_GET['product_id'];
+                        } else {
+                            $product_id = "";
+                        }
+                        if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
+                            $id = $_GET['product_id'];
+                            $listone_product = loadone_product($product_id);
+                            extract($listone_product);
+                            $product_cungloai = load_product_cungloai($product_id, $category_id);
+                        }
+                        $listone_product = loadone_product($product_id);
+                        extract($listone_product);
+    
+                        $user_feedbacks = join_feedbacks_user($product_id);
+                        $count = count_feedbacks($product_id);
+                        $price_discount = $price * (1 - $discount / 100);
+    
+                        require_once "view/client/detail_product.php";
+                    break;
+                
+                case "feedback":
+                    $user_id = $_SESSION['user']['user_id'];
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        extract($_REQUEST);
+                        if ( $note == "") {
+                            echo"<script> FeedbackErrors_Alert() ;</script>";
+                        }else{
+                            insert_feedbacks($user_id, $product_id, $rating, $note);
+                            echo "<script>FeedbackSuccess_Alert();</script>;";
+                        
+                        }
+                    }   
+                    $listone_product = loadone_product($product_id);
+                    extract($listone_product);
+                    $user_feedbacks = join_feedbacks_user($product_id);
+                    $count = count_feedbacks($product_id);
+                    $price_discount = $price * (1 - $discount / 100);
+
+
+
+                    $product_cungloai = load_product_cungloai($product_id, $category_id);
+                    require_once "view/client/detail_product.php";
+                    
+                    break;
+                
+
+
+                case 'cart':
+                    
+                    if (isset($_SESSION['user'])) {
+                        
+                        if (isset($_GET['addToCart'])) {
+                            if (!isset($_SESSION['my_cart'])) {
+                                $_SESSION['my_cart'] = [];
+                            }
+                            extract($_REQUEST);
+                            $product_id = $_POST['product_id'];
+                            $newProduct_toCart = products_select_by_id($product_id);
+                            extract($newProduct_toCart);
+                            $image = $_POST['image'];
+                            $total_price = $price * (1 - $discount / 100) * $quantity;
+                            $status = 0;
+        
+        
+                            if (!empty($_SESSION['my_cart'])) {
+                                foreach ($_SESSION['my_cart'] as  $cart => $key) {
+                                    if ($product_id == $key['product_id']) {
+                                        $add = false;
+                                        break;
+                                    } else {
+                                        $add = true;
+                                    }
+                                }
+                                if ($add) {
+                                    $quantity = 1;
+                                    $add_orders = [
+                                        'product_id' => $product_id,
+                                        'image' => $image,
+                                        'quantity' => $quantity,
+                                        'total_price' => $total_price,
+                                        'status' => $status,
+                                        'product_name' => $product_name,
+                                        'price' => $price,
+                                        'discount' => $discount,
+                                        'category_id' => $category_id,
+                                        'detail' => $detail,
+                                    ];
+                                    array_push($_SESSION['my_cart'], $add_orders);
+                                } else {
+                        
+                                    $items_tmp = products_select_by_id($product_id);
+                                    extract($items_tmp);
+                                    $_SESSION['my_cart'][$cart]['quantity'] += 1;
+                                    $quantity = $_SESSION['my_cart'][$cart]['quantity'];
+                                    update_product_cart($quantity, $quantity * $price, $product_id);
+                                }
+                            } else {
+                                $quantity = 1;
+                                $add_orders = [
+                                    'product_id' => $product_id,
+                                    'image' => $image,
+                                    'quantity' => $quantity,
+                                    'total_price' => $total_price,
+                                    'status' => $status,
+                                    'product_name' => $product_name,
+                                    'price' => $price,
+                                    'discount' => $discount,
+                                    'category_id' => $category_id,
+                                    'detail' => $detail,
+                                    'note1'=>''
+                                ];
+                                array_push($_SESSION['my_cart'], $add_orders);
+                            }
+                        }else if (isset($_GET['re_quantity'])) {
+                            $quantity = $_POST["quantity"];
+                            $id = $_POST["product_id"];
+                            $items_tmp = products_select_by_id($id);
+                            $price = $items_tmp["price"];
+                            if ($_POST["choose"] == 1) {
+                                $quantity += 1;
+                            }
+                            if ($_POST["choose"] == 0) {
+                        
+                                if ($quantity > 1) {
+                                    $quantity -= 1;
+                                } else {
+                                    //nếu bé hơn 1 thì xóa mảng trong session
+                                    foreach ($_SESSION['my_cart'] as $key => $value) {
+                                        if ($value['product_id'] == $id) {
+                                            unset($_SESSION['my_cart'][$key]);
+                                        }
+                                    }
+                                }
+                            }
+                            update_product_cart($quantity, $quantity * $price, $id);
+                        }else if (isset($_GET['btn_delete'])) {
+                            extract($_REQUEST);
+                            $id = $_POST["product_id"];
+                            foreach ($_SESSION['my_cart'] as $key => $value) {
+                                if ($value['product_id'] == $id) {
+                                    unset($_SESSION['my_cart'][$key]);
+                                }
+                            }
+                        }
+                        
+                        $total_price = 0;
+                            $count = 0;
+                            products_select_all();
+                            foreach ($_SESSION['my_cart'] as $cart) {
+                                $total_price += $cart['total_price'];
+                                $count += 1;
+                            }
+    
+                        require_once"view/client/cart.php";
+                    }else{
+                        check_signIn();
+                    }
+                    
+                    break;
+            
+                    
                 default:
-            require_once"view/client/home.php";
+                    require_once"view/client/home.php";
                 break;
         }
     }else {

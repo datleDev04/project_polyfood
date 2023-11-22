@@ -6,13 +6,17 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PolyFood</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <link rel="stylesheet" href="src/css/base.css">
     <link rel="stylesheet" href="src/css/index.css">
-    <script src="src/Javascript/main.js"></script>
-    <!-- <script src="src/css/login_register/script.js"></script> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="src/css/login_register/style.css"> -->
+    <script src="src/Javascript/main.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
 </head>
 
 <body class="font-montserrat min-w-[170px]">
@@ -25,7 +29,7 @@
                 <ul class="flex w-full justify-between gap-6 text-sm uppercase menu">
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=trangchu">Trang chủ</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=allproduct">Sản Phẩm</a></li>
-                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Giỏ hàng</a></li>
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=cart">Giỏ hàng</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Tài khoản</a></li>
                     <li>
                         <div class="relative inline-block text-left group">
@@ -43,18 +47,20 @@
                                 class="absolute right-0 z-10 hidden w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg animate-down ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                 <div class="py-1" role="none">
-                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
-                                        role="menuitem" tabindex="-1" id="menu-item-0">
+                                <?php if (isset($_SESSION['user'])) {
+                                    echo ' <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-2">
                                         Trang quản trị
-                                    </a>
+                                    </a> ';} ?>
                                     <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
                                         role="menuitem" tabindex="-1" id="menu-item-1">
                                         Hỗ trợ
                                     </a>
-                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
+                                    <?php if (isset($_SESSION['user'])) {
+                                    echo ' <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
                                         role="menuitem" tabindex="-1" id="menu-item-2">
                                         Đơn hàng của tôi
-                                    </a>
+                                    </a> ';} ?>
                                     <?php if (isset($_SESSION['user'])) {
                                     echo '
                                     <a href="?url=capnhattk"
@@ -62,18 +68,18 @@
                                         role="menuitem" tabindex="-1" id="menu-item-2">
                                         Cài đặt tài khoản
                                     </a>';} ?>
-                                    <form method="POST" action="?url=quenmk">
-                                <?php if (!isset($_SESSION['user'])) {
-                                echo " <button type='submit' class='text-gray-700 hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>Quên mật khẩu</button>";} ?>
+                                    <form method="POST" class="mb-0" action="?url=quenmk">
+                                    <?php if (!isset($_SESSION['user'])) {
+                                    echo " <button type='submit' class='text-gray-700 hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>Quên mật khẩu</button>";} ?>
                                     </form>
-                                    <form method="POST" action="?url=dangnhap" role="none">
+                                    <form method="POST" class="mb-0"   action="?url=dangnhap" role="none">
                                         <?php if (isset($_SESSION['user'])) {
                                   echo " <button type='submit' name='btn_logoff' class='text-gray-700  hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>Đăng xuất</button>";
                                           } else {
                                   echo " <button type='submit' class='text-gray-700 hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>Đăng nhập</button>";
                                           }?>
                                     </form>
-                                    <form method="POST" action="?url=dangky" role="none">
+                                    <form method="POST" class="mb-0"  action="?url=dangky" role="none">
                                     <?php if (!isset($_SESSION['user'])) {
                                       echo " <button type='submit' class='text-gray-700 hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>
                                           Đăng ký</button>";} ?>

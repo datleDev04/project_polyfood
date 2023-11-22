@@ -56,19 +56,27 @@
                         <a class="mt-2" href="index.php?url=detail_product&product_id=<?=$product_id?>">
                             <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center" src="<?= $hinh ?>" alt="" class="rounded">
                             <h2 class="truncate mt-3 font-medium"><?= $product_name ?></h2>
-                            <p class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
-                                <span class="text-xs"> </span>
-                                <?= number_format($price, 0, ",", ".") ?>đ
-                            </p>
+                            <h1 class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
+                                <span class="text-center text-xl">
+                                    <?= number_format($price, 0, ",", ".") ?>đ
+                                     </span>
+                            </h1>
                             <p class="leading-relaxed text-gray-700 mt-1 text-xs limited__content-2 h-10">
                                 <?= $detail ?>
                             </p>
                         </a>
-                        <form action="#" method="post">
+                        <form action="?url=cart&addToCart" method="post">
                             <input type="hidden" name="product_id" value="<?= $product_id ?>">
                             <input type="hidden" name="image" value="<?= $image ?>">
                             <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
                                 Thêm vào giỏ
+                            </button>
+                        </form>
+                        <form action="?url=order" method="post">
+                            <input type="hidden" name="product_id" value="<?= $product_id ?>">
+                            <input type="hidden" name="image" value="<?= $image ?>">
+                            <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
+                                Mua Ngay
                             </button>
                         </form>
 

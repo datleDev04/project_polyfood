@@ -35,7 +35,7 @@
     }
         
     function products_select_all(){
-        $sql = "SELECT p.*,c.category_name,m.menu_name FROM products p join categories c on p.category_id=c.category_id join menus m on p.menu_id=m.menu_id";
+        $sql = "SELECT p.*,c.category_name FROM products p join categories c on p.category_id=c.category_id ";
         return pdo_query($sql);
     }
         
@@ -150,10 +150,10 @@ function product_cungloai($product_id, $category_id)
 //     $sql = "SELECT * FROM products WHERE category_id=$category_id";
 //     return pdo_query($sql);
 // }
-// function load_product_cungloai($product_id, $category_id)
-// {
-//     $sql = "select * from products where category_id=" . $category_id . " AND product_id <>" . $product_id;
-//     $listsanpham = pdo_query($sql);
-//     return $listsanpham;
-// }
+function load_product_cungloai($product_id, $category_id)
+{
+    $sql = "select * from products where category_id=" . $category_id . " AND product_id <>" . $product_id;
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
 ?>
