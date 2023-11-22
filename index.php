@@ -51,7 +51,7 @@
                  else {
                     if (exist_param("btn_logoff")) {
                         $MESSAGE = "Đăng xuất thành công!";
-                        session_unset();
+                        unset($_SESSION['user']);
                     }
                     $user_name = get_cookie("user_name");
                     $password = get_cookie("password");
