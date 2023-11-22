@@ -39,7 +39,7 @@
                         <p class="text-xs text-gray-500 sm:text-sm whitespace-nowrap">
                             Đơn giá: <?= number_format($item['price'], 0, ",", ".") ?>đ
                         </p>
-                        <form action="index.php?btn_re_quantity" method="POST">
+                        <form action="?url=cart&re_quantity" method="POST">
                             <div class="flex">
                                 <button style="box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37)" name="choose" value="0"
                                     class="bg-white rounded-md">
@@ -67,8 +67,10 @@
                             Thành tiền :<?= number_format($item['price'] * $item['quantity'], 0, ",", ".") ?> </p>
                     </div>
                 </div>
-                <form class="absolute top-0 right-0 product__delete sm:p-2">
-                    <button type="submit" name="btn_delete" class="btn__delete__cart">
+                <form action="?url=cart&btn_delete" method="POST" class="absolute top-0 right-0 product__delete sm:p-2">
+                        <input type="hidden" id="product_id" name="product_id"
+                                    value="<?= $item['product_id'] ?>" />
+                    <button  class="btn__delete__cart">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -151,27 +153,7 @@
     
     <script>
         NotSingIn()
-    function NotSingIn() {
-        Swal.fire({
-            title: 'BẠN CHƯA ĐĂNG NHẬP  ',
-            text: 'Vui lòng đăng nhập để có thể thêm sản phẩm vào giỏ hàng.',
-            icon: 'info',
-            showCancelButton: true,
-            confirmButtonText: 'Đăng nhập',
-            cancelButtonText: 'Đóng',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Xử lý đăng ký ở đây
-                // Nếu người dùng đăng ký thành công, bạn có thể thêm sản phẩm vào giỏ hàng.
-                // Swal.fire('Đăng ký thành công!', 'Bây giờ bạn có thể thêm vào giỏ hàng.', 'success');
-                window.location.href = '?url=dangnhap';
-            } else {
-                window.location.href = '?url=trangchu';
-
-            }
-        });
-    }
+    
     </script>
 <?php }?>
 

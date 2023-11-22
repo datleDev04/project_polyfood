@@ -28,7 +28,7 @@
             <img src="<?= $hinh ?>" alt="" class="rounded-xl">
         </div>
         <div class="">
-            <form action="?url=addToCart" method="POST">
+            <form action="?url=cart&addToCart" method="POST">
                 <input type="hidden" name="product_id" id="product_id" value="<?= $listone_product['product_id'] ?>">
                 <input type="hidden" name="product_name" id="product_name" value="<?= $listone_product['product_name'] ?>">
                 <input type="hidden" name="price" id="price" value="<?= $listone_product['price'] ?>">
@@ -95,9 +95,9 @@
                     </svg>
                 </button> -->
                 <div class ="flex justify-start">
-                    <a href="?url=addToCart" class="flex items-center px-5 py-2 mt-5 text-sm text-white bg-orange-600 rounded-lg">
+                    <button class="flex items-center px-5 py-2 mt-5 text-sm text-white bg-orange-600 rounded-lg">
                         <p class="px-2 font-bold text-base">Thêm vào giỏ</p>
-                    </a>
+                    </button>
                     <a href="?url=order" class="flex items-center px-5 py-2 mt-5 ml-5 text-sm text-white bg-orange-600 rounded-lg">
                         <p class="px-2 font-bold text-base">Mua Ngay</p>
                     </a>

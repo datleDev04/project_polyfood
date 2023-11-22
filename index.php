@@ -36,6 +36,9 @@
                             $MESSAGE = "Đăng nhập thành công!";
                             $_SESSION["user"] = $user;
                             $MESSAGE = "Đăng nhập thành thành công!";
+                            if (!isset($_SESSION['my_cart'])) {
+                                $_SESSION['my_cart'] =[];
+                            }
                             echo "<meta http-equiv='refresh' content='0;URL=?url=trangchu'/>";
 
                         } else {
@@ -112,6 +115,8 @@
                         try {
                             insert_users($user_name, $password, $name, $email, $phone, $image, $role_id);
                             $MESSAGE = "Đăng ký thành viên thành công!";
+
+                                $_SESSION['my_cart'] =[];
                             // header("location: " . "$SITE_URL/account/sign-in.php");
                             // die;
                         } catch (Exception $exc) {
@@ -267,92 +272,119 @@
                     
                     break;
                 
-                case "cart":
-                    if (!isset($_SESSION['my-cart'])) {
-                        $_SESSION['my-cart'] =[];
-                    }
-                    $total_price = 0;
-                    $count =0;
-                    products_select_all();
-                    foreach($_SESSION['my-cart'] as $cart){
-                        $total_price += $cart['total_price'];
-                        $count += 1;
-                    }
-                    require_once"view/client/cart.php";
-                    break;
-
-                case 'addToCart':
-                    if (!isset($_SESSION['my-cart'])) {
-                        $_SESSION['my_cart'] = [];
-                    }
-                    extract($_REQUEST);
-                    $product_id = $_POST['product_id'];
-                    $newProduct_toCart = products_select_by_id($product_id);
-                    extract($newProduct_toCart);
-                    $image = $_POST['image'];
-                    $total_price = $price * (1 - $discount / 100) * $quantity;
-                    $status = 0;
 
 
-                    if (!empty($_SESSION['my_cart'])) {
-                        foreach ($_SESSION['my_cart'] as  $cart => $key) {
-                            if ($product_id == $key['product_id']) {
-                                $add = false;
-                                break;
+                case 'cart':
+                    
+                    if (isset($_SESSION['user'])) {
+                        
+                        if (isset($_GET['addToCart'])) {
+                            if (!isset($_SESSION['my_cart'])) {
+                                $_SESSION['my_cart'] = [];
+                            }
+                            extract($_REQUEST);
+                            $product_id = $_POST['product_id'];
+                            $newProduct_toCart = products_select_by_id($product_id);
+                            extract($newProduct_toCart);
+                            $image = $_POST['image'];
+                            $total_price = $price * (1 - $discount / 100) * $quantity;
+                            $status = 0;
+        
+        
+                            if (!empty($_SESSION['my_cart'])) {
+                                foreach ($_SESSION['my_cart'] as  $cart => $key) {
+                                    if ($product_id == $key['product_id']) {
+                                        $add = false;
+                                        break;
+                                    } else {
+                                        $add = true;
+                                    }
+                                }
+                                if ($add) {
+                                    $quantity = 1;
+                                    $add_orders = [
+                                        'product_id' => $product_id,
+                                        'image' => $image,
+                                        'quantity' => $quantity,
+                                        'total_price' => $total_price,
+                                        'status' => $status,
+                                        'product_name' => $product_name,
+                                        'price' => $price,
+                                        'discount' => $discount,
+                                        'category_id' => $category_id,
+                                        'detail' => $detail,
+                                    ];
+                                    array_push($_SESSION['my_cart'], $add_orders);
+                                } else {
+                        
+                                    $items_tmp = products_select_by_id($product_id);
+                                    extract($items_tmp);
+                                    $_SESSION['my_cart'][$cart]['quantity'] += 1;
+                                    $quantity = $_SESSION['my_cart'][$cart]['quantity'];
+                                    update_product_cart($quantity, $quantity * $price, $product_id);
+                                }
                             } else {
-                                $add = true;
+                                $quantity = 1;
+                                $add_orders = [
+                                    'product_id' => $product_id,
+                                    'image' => $image,
+                                    'quantity' => $quantity,
+                                    'total_price' => $total_price,
+                                    'status' => $status,
+                                    'product_name' => $product_name,
+                                    'price' => $price,
+                                    'discount' => $discount,
+                                    'category_id' => $category_id,
+                                    'detail' => $detail,
+                                    'note1'=>''
+                                ];
+                                array_push($_SESSION['my_cart'], $add_orders);
+                            }
+                        }else if (isset($_GET['re_quantity'])) {
+                            $quantity = $_POST["quantity"];
+                            $id = $_POST["product_id"];
+                            $items_tmp = products_select_by_id($id);
+                            $price = $items_tmp["price"];
+                            if ($_POST["choose"] == 1) {
+                                $quantity += 1;
+                            }
+                            if ($_POST["choose"] == 0) {
+                        
+                                if ($quantity > 1) {
+                                    $quantity -= 1;
+                                } else {
+                                    //nếu bé hơn 1 thì xóa mảng trong session
+                                    foreach ($_SESSION['my_cart'] as $key => $value) {
+                                        if ($value['product_id'] == $id) {
+                                            unset($_SESSION['my_cart'][$key]);
+                                        }
+                                    }
+                                }
+                            }
+                            update_product_cart($quantity, $quantity * $price, $id);
+                        }else if (isset($_GET['btn_delete'])) {
+                            extract($_REQUEST);
+                            $id = $_POST["product_id"];
+                            foreach ($_SESSION['my_cart'] as $key => $value) {
+                                if ($value['product_id'] == $id) {
+                                    unset($_SESSION['my_cart'][$key]);
+                                }
                             }
                         }
-                        if ($add) {
-                            $quantity = 1;
-                            $add_orders = [
-                                'product_id' => $product_id,
-                                'image' => $image,
-                                'quantity' => $quantity,
-                                'total_price' => $total_price,
-                                'status' => $status,
-                                'product_name' => $product_name,
-                                'price' => $price,
-                                'discount' => $discount,
-                                'category_id' => $category_id,
-                                'detail' => $detail,
-                            ];
-                            array_push($_SESSION['my_cart'], $add_orders);
-                        } else {
-                
-                            $items_tmp = products_select_by_id($product_id);
-                            extract($items_tmp);
-                            $_SESSION['my_cart'][$cart]['quantity'] += 1;
-                            $quantity = $_SESSION['my_cart'][$cart]['quantity'];
-                            update_product_cart($quantity, $quantity * $price, $product_id);
-                        }
-                    } else {
-                        $quantity = 1;
-                        $add_orders = [
-                            'product_id' => $product_id,
-                            'image' => $image,
-                            'quantity' => $quantity,
-                            'total_price' => $total_price,
-                            'status' => $status,
-                            'product_name' => $product_name,
-                            'price' => $price,
-                            'discount' => $discount,
-                            'category_id' => $category_id,
-                            'detail' => $detail,
-                            'note1'=>''
-                        ];
-                        var_dump($add_orders);
-                        array_push($_SESSION['my_cart'], $add_orders);
+                        
+                        $total_price = 0;
+                            $count = 0;
+                            products_select_all();
+                            foreach ($_SESSION['my_cart'] as $cart) {
+                                $total_price += $cart['total_price'];
+                                $count += 1;
+                            }
+    
+                        require_once"view/client/cart.php";
+                    }else{
+                        check_signIn();
                     }
-                    var_dump('dsadsa',$_SESSION['my-cart'],'đây là caat');
-                    $total_price = 0;
-                        $count = 0;
-                        products_select_all();
-                        foreach ($_SESSION['my_cart'] as $cart) {
-                            $total_price += $cart['total_price'];
-                            $count += 1;
-                        }
-                    require_once"view/client/cart.php";
+                    
                     break;
                 
                 default:

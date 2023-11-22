@@ -68,6 +68,12 @@
         }
         $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"];
     }
+
+    function check_signIn(){
+        if (!isset($_SESSION['user'])) {
+            echo" <script>NotSingIn()</script>";
+        }
+    }
 ?>
 
 
@@ -88,4 +94,25 @@
                 icon: 'success'
             });
         }
+    function NotSingIn() {
+        Swal.fire({
+            title: 'BẠN CHƯA ĐĂNG NHẬP  ',
+            text: 'Vui lòng đăng nhập để có thể thêm sản phẩm vào giỏ hàng.',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Đăng nhập',
+            cancelButtonText: 'Đóng',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Xử lý đăng ký ở đây
+                // Nếu người dùng đăng ký thành công, bạn có thể thêm sản phẩm vào giỏ hàng.
+                // Swal.fire('Đăng ký thành công!', 'Bây giờ bạn có thể thêm vào giỏ hàng.', 'success');
+                window.location.href = '?url=dangnhap';
+            } else {
+                window.location.href = '?url=trangchu';
+
+            }
+        });
+    }
 </script>

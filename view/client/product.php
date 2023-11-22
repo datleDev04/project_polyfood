@@ -65,7 +65,7 @@
                                 <?= $detail ?>
                             </p>
                         </a>
-                        <form action="?url=addToCart" method="post">
+                        <form action="?url=cart&addToCart" method="post">
                             <input type="hidden" name="product_id" value="<?= $product_id ?>">
                             <input type="hidden" name="image" value="<?= $image ?>">
                             <button class="btn__add w-full bg-orange-600 text-white px-2 py-2 rounded">
