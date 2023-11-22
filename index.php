@@ -386,7 +386,8 @@
                     }
                     
                     break;
-                
+            
+                    
                 default:
                     require_once"view/client/home.php";
                 break;
