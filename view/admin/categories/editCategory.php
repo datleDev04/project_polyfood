@@ -89,7 +89,7 @@
                 <!-- End header -->
                 <main>
                     <?php
-                    if (strlen($MESSAGE)) {
+                    if ($MESSAGE != "") {
                         echo "<h5>$MESSAGE</h5>";
                     }
                     ?>
@@ -103,7 +103,7 @@
                                 <h1 class="text-left lg:text-xl text-gray-500 uppercase">Cật nhật danh mục</h1>
                             </section>
 
-                            <form action="index.php" class="form__add-category w-full mt-5" method="post" enctype="multipart/form-data">
+                            <form action="?url=editdm" class="form__add-category w-full mt-5" method="post" enctype="multipart/form-data">
                                 <div class="list__form-group w-full grid  grid-cols-2 gap-5">
                                     <div class="form__group flex flex-col">
                                         <label for="category_id" class="text-gray-500 text-xs sm:text-sm md:text-base lg:text-base">Mã
@@ -144,11 +144,11 @@ rounded-md text-gray-500
 
                                 </div>
                                 <div class="form__add-category--list-button mx-auto w-full mt-7 flex gap-3 justify-center items-center">
-                                    <a href="?url=editdm" name="btn_update" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow: 1.5px 1.5px
+                                    <button name="btn_update" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow: 1.5px 1.5px
 2.5px #babecc, -2px -2px 5px #fff;" class="p-2 border w-[120px] text-center
 rounded-md text-sm hover:bg-gray-200 leading-4 ">
                                         Cật nhật
-                                    </a>
+                                    </button>
                                     <button type="reset" name="reset" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow: 1.5px 1.5px
 2.5px #babecc, -2px -2px 5px #fff;" class="p-2 border w-[120px] text-center
 rounded-md text-sm hover:bg-gray-200 leading-4 ">

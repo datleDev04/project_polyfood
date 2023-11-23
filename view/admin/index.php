@@ -49,38 +49,63 @@ if (isset($_GET['url'])) {
             }
             require_once "categories/addCategories.php";
             break;
-            
+
         case 'listdm':
             $listcategories = loadall_categories();
             require_once "categories/list.php";
             break;
 
         case 'editdm':
-
+            $category_name = $suggest="";
             if (isset($_GET['category_id'])) {
                 $category_id = $_GET['category_id'];
                 $item = categories_select_by_id($category_id);
                 extract($item);
             }
-            if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
-                $categories_name = $_POST['category_name'];
-                $category_id = $_GET['category_id'];
-                $category_suggest = $_POST['category_suggest'];
+            if (isset($_POST['btn_update'])) {
+                $category_name = $_POST['category_name'];
+                $category_id = $_POST['category_id'];
+                $suggest = $_POST['suggest'];
                 $category_image = $_POST['category_image'];
-                update_categories($category_name, $category_image, $suggest, $category_id);
+                $flag=true;
+                if (strlen($category_name) <= 0) {
+                    $error['category_name'] = "Bạn chưa nhập tên danh mục!";
+                    $flag = false;
+                }
+                if (categories_name_exist_id($category_name, $category_id)) {
+                    $error['category_name'] = "Tên danh mục này đã tồn tại!";
+                    $flag = false;
+                }
+                if (strlen($suggest) <= 0) {
+                    $error['suggest'] = "Bạn chưa nhập gợi ý!";
+                    $flag = false;
+                }
+                if ($flag) {
+                    $upload_category_image = save_file("upload_category_image", "../../src/assets/images/categories");
+                    $category_image = strlen("$upload_category_image") > 0 ? $upload_category_image : $category_image;
+                    try {
+                        update_categories($category_name, $category_image, $suggest, $category_id);
+                        $MESSAGE = "Cập nhật danh mục thành công";
+                    } catch (Exception $exc) {
+                        $MESSAGE = "Cập nhật danh mục thất bại";
+                    }
+                }
             }
             $listcategories = loadall_categories();
             require_once "categories/editCategory.php";
             break;
-        case'deletedm':
-            if (isset($_GET['btn_delete'])&&($_GET['btn_delete']>0)) {
-                    categories_delete($category_id);
+        case 'deletedm':
+            // echo "hehe";
+            
+                if (isset($_GET['category_id'])&& ($_GET['category_id'] > 0)) {
+                    categories_delete($_GET['category_id']);
                     $MESSAGE = "Xóa thành công!";
                 }
-            $listcategories = loadall_categories();
-            require_once "categories/list.php";
-            break;
-            }         
+                $listcategories = loadall_categories();
+                require_once "categories/list.php";
+                break;
+            
+    }
 } else {
     require_once "../admin/index.php";
 }

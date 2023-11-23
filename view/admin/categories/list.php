@@ -140,6 +140,7 @@
                                     <tbody>
                                         <?php foreach ($listcategories as $item) : ?>
                                         <?php extract($item);
+                                        // var_dump($item);
                                             ?>
                                         <tr class="border-t-2 border-dashed">
                                             <td class="px-5 whitespace-nowrap">
@@ -158,10 +159,10 @@
                                                 </p>
                                             </td>
                                             <td class="p-2 whitespace-nowrap">
-                                                <?php
-
-                                                    ?>
-                                                <img class="block mx-auto rounded-lg" src="<?= $category_image ?>"
+                                                <?php extract($listcategories);
+                                                    $image = "../../src/assets/images/categories/".$category_image;
+                                                ?>
+                                                <img class="block mx-auto rounded-lg" src="<?= $image ?>"
                                                     width="60" height="60" alt="">
                                             </td>
                                             <td class="p-2 whitespace-nowrap">
@@ -172,7 +173,7 @@
 
                                             <td class="px-5  whitespace-nowrap">
                                                 <div class="box__action flex gap-2">
-                                                    <a href="?url=editdm&$category_id=<?= $category_id ?>"
+                                                    <a href="?url=editdm&category_id=<?= $category_id ?>"
                                                         class="text-indigo-600 hover:text-indigo-900"><svg
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -181,7 +182,7 @@
                                                                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                                         </svg>
                                                     </a>
-                                                    <a href="?url=listdm&category_id=<?= $category_id ?>" 
+                                                    <a href="?url=deletedm&category_id=<?= $category_id ?>" name="btn_delete"
                                                         class="text-indigo-600 hover:text-indigo-900"><svg
                                                             xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
