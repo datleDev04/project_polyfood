@@ -199,10 +199,6 @@ if (isset($url) && $url != "") {
 
             require_once "view/client/home.php";
             break;
-        case "btn_list":
-            $items = loadall_categories();
-            require_once "view/admin/categories/list.php";
-            break;
        
     }
     

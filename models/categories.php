@@ -19,15 +19,8 @@ function update_categories($category_name, $category_image, $suggest, $category_
 
 function categories_delete($category_id)
 {
-    if (is_array($category_id)) {
-        foreach ($category_id as $id_tmp) {
-            $sql = "DELETE FROM categories WHERE category_id=$id_tmp";
-            pdo_execute($sql);
-        }
-    } else {
-        $sql = "DELETE FROM categories WHERE category_id=$category_id";
-        pdo_execute($sql);
-    }
+    $sql = "DELETE FROM categories WHERE category_id".$category_id;
+    pdo_execute($sql);
 }
 function categories_select_all()
 {
