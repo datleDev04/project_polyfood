@@ -13,7 +13,7 @@ foreach ($product_cungloai as $product_cungloai) {
         <input type="hidden" value="'.$price.'" value="price" id="price" name="price">
 
         <div class="p-4 shadow__products  rounded-2xl bg-white space-y-2">
-            <a href="'.$link.'"><img class="block mx-auto min-w-[150px] h-[150px] lg:h-[180px] object-cover object-contain" src="'.$hinh.'" alt=""> </a>
+            <a href="'.$link.'"><img class="block mx-auto min-w-[150px] h-[150px] lg:h-[180px]  object-contain" src="'.$hinh.'" alt=""> </a>
             <h2 class=" space-y-2">'.$product_name.'</h2>
             <p class="text-xs font-semibold flex justify-between  text-red-500 mt-2">
                 <span class="text-sm text-red-600">★★★★★</span>'.number_format($price * (1 - $discount / 100), 0, '', '.').'đ

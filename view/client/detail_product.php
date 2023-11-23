@@ -61,7 +61,7 @@
                         Phản hồi
                     </p>
                 </div>
-                <div class="flex space-x-2 text-3xl text-orange-600 my-5">
+                <div class="flex space-x-2 text-3xl text-orange-600 my-4">
 
                         <strike class="text-3xl font-light text-gray-400"><?= number_format($price, 0, ",", ".") ?>
                             đ</strike>

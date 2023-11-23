@@ -116,3 +116,5 @@
         });
     }
 </script>
+
+<!-- $price_discount = $price * (1 - $discount / 100); -->

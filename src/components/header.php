@@ -57,7 +57,7 @@
                                         Hỗ trợ
                                     </a>
                                     <?php if (isset($_SESSION['user'])) {
-                                    echo ' <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
+                                    echo ' <a href="?url=my_ordered" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
                                         role="menuitem" tabindex="-1" id="menu-item-2">
                                         Đơn hàng của tôi
                                     </a> ';} ?>

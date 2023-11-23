@@ -8,6 +8,7 @@
     require_once"models/product.php";
     require_once"models/feedbacks.php";
     require_once"models/cart.php";
+    require_once"models/orders.php";
     
 
     require_once"src/components/header.php";
@@ -278,10 +279,10 @@
                     
                     if (isset($_SESSION['user'])) {
                         
+                        if (!isset($_SESSION['my_cart'])) {
+                            $_SESSION['my_cart'] = [];
+                        }
                         if (isset($_GET['addToCart'])) {
-                            if (!isset($_SESSION['my_cart'])) {
-                                $_SESSION['my_cart'] = [];
-                            }
                             extract($_REQUEST);
                             $product_id = $_POST['product_id'];
                             $newProduct_toCart = products_select_by_id($product_id);
@@ -370,7 +371,7 @@
                                     unset($_SESSION['my_cart'][$key]);
                                 }
                             }
-                        }
+                        }   
                         
                         $total_price = 0;
                             $count = 0;
@@ -386,7 +387,53 @@
                     }
                     
                     break;
-            
+                
+                case "order":
+                    
+                    $total_price_all = 0;
+                        if (isset($_SESSION['my_cart'])) {
+                        foreach (($_SESSION['my_cart']) as $item) {
+                            extract($item);
+                            $total_price_all += $total_price;
+                        }
+                        }
+
+
+                        require_once"view/client/order.php";
+                    break;
+
+                case "payment":
+                    $user_id = $_SESSION['user']['user_id'];
+                        $time_order = date("Y-m-d H:i:s");
+                        $status = 0;
+                        $note = $_POST['note'];
+                        foreach ($_SESSION['my_cart'] as $cart) {
+                            extract($cart);
+                            insert_order($product_id, $quantity, $user_id, $note, $status);
+                        }
+                        //thêm note vào session my_cart
+                        foreach ($_SESSION['my_cart'] as $key => $value) {
+                            $_SESSION['my_cart'][$key]['note'] = $note;
+                        }
+                    
+                    
+                    unset($_SESSION['my_cart']);
+                    require_once"view/client/payment.php";
+
+                    break;
+
+                case "my_ordered":
+                    
+                    if (isset($_SESSION['user'])) {
+                        $user_id = $_SESSION['user']['user_id'];
+                        $user = select_by_id_users($user_id);
+                        extract($user);
+                    }
+                    $order = join_order_product($user_id);
+                    extract($order);
+                    require_once"view/client/my-ordered.php";
+                    
+                    break;
                     
                 default:
                     require_once"view/client/home.php";

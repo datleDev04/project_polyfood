@@ -37,7 +37,7 @@
                             <?= $item['product_name']?>
                         </h3>
                         <p class="text-xs text-gray-500 sm:text-sm whitespace-nowrap">
-                            Đơn giá: <?= number_format($item['price'], 0, ",", ".") ?>đ
+                            Đơn giá: <?= number_format(($item['price']* (1 - $item['discount'] / 100)), 0, ",", ".") ?>đ
                         </p>
                         <form action="?url=cart&re_quantity" method="POST">
                             <div class="flex">
@@ -64,7 +64,7 @@
                             </div>
                         </form>
                         <p class="text-xs text-gray-500 sm:text-sm whitespace-nowrap">
-                            Thành tiền :<?= number_format($item['price'] * $item['quantity'], 0, ",", ".") ?> </p>
+                            Thành tiền :<?= number_format(($item['price']* (1 - $item['discount'] / 100))* $item['quantity'], 0, ",", ".") ?> </p>
                     </div>
                 </div>
                 <form action="?url=cart&btn_delete" method="POST" class="absolute top-0 right-0 product__delete sm:p-2">
@@ -102,8 +102,8 @@
             <h1 class="text-xl font-semibold cart__checkout-title">
                 Thông tin đơn hàng
             </h1>
-
-            <div class="flex flex-col gap-5 cart__checkout-info">
+            <form action="?url=order" method="post">
+                <div class="flex flex-col gap-5 cart__checkout-info">
                 <?php if (!empty($_SESSION['my_cart'])) { ?>
                 <?php
                     foreach ($_SESSION['my_cart'] as $item) {
@@ -112,8 +112,9 @@
                     <p class="text-gray-500"> <?= $item['product_name'] ?></p>
                     <p class="text-gray-500">x <?= $item['quantity'] ?></p>
                     <p class="text-gray-500">
-                        <?= number_format($item['price'], 0, ",", ".") ?>đ
+                        <?= number_format(($item['price']* (1 - $item['discount'] / 100))* $item['quantity'], 0, ",", ".") ?>đ
                     </p>
+
                 </div>
                 <?php } ?>
                 <?php } else {
@@ -126,8 +127,8 @@
                     </p>
                 </div>
 
-            </div>
-            <form action="index.php?btn_checkout" method="post">
+                </div>
+
                 <button style="
                 box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
                 backdrop-filter: blur(4px);
