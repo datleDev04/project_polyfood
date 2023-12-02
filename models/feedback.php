@@ -1,5 +1,4 @@
 <?php
-
 function insert_feedbacks($user_id, $product_id,$rate, $content){
     $sql = "INSERT INTO feedbacks(user_id, product_id,rate, content) 
                       VALUES ( '$user_id', $product_id,$rate, '$content')";
@@ -62,5 +61,18 @@ function count_feedbacks($product_id){
 function avg_feedbacks($product_id){
     $sql = "SELECT avg(rate) FROM feedbacks WHERE product_id=$product_id";
     return pdo_query_value($sql);
+}
+function statistic_feedbacks(){
+    $sql = "SELECT pro.product_id,pro.product_name, "
+    . " COUNT(*) total,"
+    . " MIN(fb.time_send) old,"
+    . " MAX(fb.time_send) new"
+    . " FROM feedbacks fb "
+    . " JOIN products pro ON pro.product_id=fb.product_id "
+    . " JOIN users u ON u.user_id=fb.user_id "
+    . " GROUP BY pro.product_id, pro.product_name"
+    . " HAVING total > 0";
+    return pdo_query($sql);
+
 }
 ?>
