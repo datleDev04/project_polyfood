@@ -25,7 +25,7 @@
           " class="w-[15%] flex flex-col gap-5 p-5">
                 <ul class="w-full menu__bar flex flex-col justify-center gap-5 p-3">
                     <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/home.png" alt="">
+                        <img style="width: 22px;" src="./src/assets/icons/home.png" alt="">
                         <a href="" class="font-medium text-md ml-3 text-gray-500">Trang chính</a>
                     </li>
                     <li class="menu__bar-item flex gap-3 items-center">
@@ -34,11 +34,11 @@
                     </li>
                     <li class="menu__bar-item flex gap-3 items-center" name="btn_list">
                         <img style="width: 22px;" src="src/assets/icons/category.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Danh mục</a>
+                        <a href="index.php?url=listdm" class="font-medium text-md ml-3 text-gray-500">Danh mục</a>
                     </li>
                     <li class="menu__bar-item flex gap-3 items-center">
                         <img style="width: 22px;" src="src/assets/icons/user.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Người dùng</a>
+                        <a href="index.php?url=listUser" class="font-medium text-md ml-3 text-gray-500">Người dùng</a>
                     </li>
                     <li class="menu__bar-item flex gap-3 items-center">
                         <img style="width: 22px;" src="src/assets/icons/bubble-chat.png" alt="">
@@ -54,7 +54,7 @@
                     </li>
                     <li class="menu__bar-item flex gap-3 items-center">
                         <img style="width: 22px;" src="src/assets/icons/analysis.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Thống kê</a>
+                        <a href="index.php?url=listchart" class="font-medium text-md ml-3 text-gray-500">Thống kê</a>
                     </li>
                     <li class="menu__bar-item flex gap-3 items-center">
                         <img style="width: 22px;" src="src/assets/icons/back.png" alt="">
@@ -76,13 +76,12 @@
                     </div>
                     <div class="account__admin flex items-center gap-2">
                         <div class="account__admin--avatar">
-
-                            <img src="<?= $CONTENT_URL  ?>/images/users/<?= $_SESSION['user']['image'] ?>" alt=""
-                                class="w-10 h-10 rounded-full" />
+                            <!-- <img src="<?= $CONTENT_URL  ?>/images/users/<?= $_SESSION['user']['image'] ?>" alt=""
+                                class="w-10 h-10 rounded-full" /> -->
                         </div>
                         <div class="account__admin--name flex flex-col gap-1">
                             <p class="font-medium text-sm text-gray-500">
-                                <?= $_SESSION['user']['name'] ?>
+                                <!-- <?= $_SESSION['user']['name'] ?> -->
                             </p>
                             <a href="index.php?action=logout"
                                 class="logout text-xs text-gray-500 flex items-center gap-1">
@@ -161,6 +160,7 @@
                                             <td class="p-2 whitespace-nowrap">
                                                 <?php extract($listcategories);
                                                     $image = "../../src/assets/images/categories/".$category_image;
+                                                
                                                 ?>
                                                 <img class="block mx-auto rounded-lg" src="<?= $image ?>"
                                                     width="60" height="60" alt="">

@@ -2,10 +2,16 @@
 require_once "/xampp/htdocs/project_polyfood/models/pdo.php";
 
 
+function loadall_User(){
+    $sql = "select * from user";
+    $list_User = pdo_query($sql);
+    return $list_User;
+}
 function insert_users($user_name, $password, $name, $email, $phone, $image, $role_id)
 {
     $sql = "INSERT INTO users(user_name, password,name, email, phone, image, role_id) 
                       VALUES ( '$user_name', '$password','$name', '$email', '$phone', '$image', $role_id)";
+                    //   die( $sql);
     pdo_execute($sql);
 }
 function update_users($user_name, $password, $name, $email, $phone, $image, $role_id, $user_id)
