@@ -38,7 +38,7 @@
                             $_SESSION["user"] = $user;
                             $MESSAGE = "Đăng nhập thành thành công!";
                             if (!isset($_SESSION['my_cart'])) {
-                                $_SESSION['my_cart'] =[];
+                                $_SESSION['my_cart'] =[];      
                             }
                             echo "<meta http-equiv='refresh' content='0;URL=?url=trangchu'/>";
 
@@ -204,13 +204,66 @@
                 }
                 include_once"src/components/account/capnhattk.php";
                 break;
+
+                case 'search':
+                    if (isset($_GET['filter'])) {
+                        $keyword = $_GET['filter'];
+                    }else {
+                        $keyword = $_POST['search']; 
+                    }
+                    // var_dump($_SERVER['REQUEST_URI']);
+                    // danh mục
+                    $listall_category = loadall_category();
+                    // sản phẩm
+                    $listall_product = products_select_keyword($keyword,"","");
+                    if (isset($_GET['filter'])) {
+                        if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                            # code...
+                                $priceFilter = $_POST["priceFilter"];
+                                $viewsFilter = $_POST["viewsFilter"];
+
+                        }
+
+                        $listall_product = products_select_keyword($keyword,$priceFilter,$viewsFilter);
+                    }
+                    
+                    if ($listall_product == []) {
+                        $listall_product = loadall_product("","","");
+                        
+                        echo"<script> searchErrors_Alert() ;</script>";
+
+                    }
+                    require_once "view/client/product.php";
+                    break;
+                // case ".'$_SERVER["REQUEST_URI"]'.'&filter'":
+
+                //     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                //         $priceFilter = $_POST["priceFilter"];
+                //         $viewsFilter = $_POST["viewsFilter"];
+
+                //     }
+                //     require_once "view/client/product.php";
+                //     break;
             
                 
                 case "allproduct":
                     // danh mục
                     $listall_category = loadall_category();
                     // sản phẩm
-                    $listall_product = loadall_product("");
+                    $priceFilter = $viewsFilter = "";
+                    if (isset($_GET['filter'])) {
+                        if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                            # code...
+                                $priceFilter = $_POST["priceFilter"];
+                                $viewsFilter = $_POST["viewsFilter"];
+
+                        }
+
+                        $listall_product = loadall_product("",$priceFilter,$viewsFilter);
+                    }else {
+                         $listall_product = loadall_product("","","");
+                    }
+
                     require_once "view/client/product.php";
                     break;
                 case "product":
@@ -222,7 +275,7 @@
                     }
                     // $listall_product_cate = loadall_product_category($category_id);
                     // echo $listall_product_cate;
-                    $listall_product = loadall_product($category_id);
+                    $listall_product = loadall_product($category_id,"","");
                     require_once "view/client/product.php";
                     break;
 
@@ -235,6 +288,7 @@
                         if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
                             $id = $_GET['product_id'];
                             $listone_product = loadone_product($product_id);
+                            products_view_up($product_id);
                             extract($listone_product);
                             $product_cungloai = load_product_cungloai($product_id, $category_id);
                         }
@@ -377,7 +431,8 @@
                             $count = 0;
                             products_select_all();
                             foreach ($_SESSION['my_cart'] as $cart) {
-                                $total_price += $cart['total_price'];
+                                // $total_price += $cart['total_price'];
+                                $total_price += ($cart['price']* (1 - $cart['discount'] / 100))* $cart['quantity'];
                                 $count += 1;
                             }
     
@@ -389,41 +444,48 @@
                     break;
                 
                 case "order":
-                    
                     $total_price_all = 0;
+                    $address = "";
                         if (isset($_SESSION['my_cart'])) {
-                        foreach (($_SESSION['my_cart']) as $item) {
-                            extract($item);
-                            $total_price_all += $total_price;
-                        }
-                        }
-
+                            foreach (($_SESSION['my_cart']) as $item) {
+                                extract($item);
+                                $total_price_all += $price *(1 - $discount / 100) *$quantity;
+                            }}
 
                         require_once"view/client/order.php";
                     break;
 
-                case "payment":
-                    $user_id = $_SESSION['user']['user_id'];
-                        $time_order = date("Y-m-d H:i:s");
-                        $status = 0;
-                        $note = $_POST['note'];
-                        foreach ($_SESSION['my_cart'] as $cart) {
-                            extract($cart);
-                            insert_order($product_id, $quantity, $user_id, $note, $status);
-                        }
-                        //thêm note vào session my_cart
-                        foreach ($_SESSION['my_cart'] as $key => $value) {
-                            $_SESSION['my_cart'][$key]['note'] = $note;
-                        }
-                    
-                    
-                    unset($_SESSION['my_cart']);
-                    require_once"view/client/payment.php";
 
+                case "payment":
+                    if (isset($_POST['order'])) {
+                    $address = $_POST['diachi'];
+
+                        $total_price_all=0;
+                        $user_id = $_SESSION['user']['user_id'];
+                            $time_order = date("Y-m-d H:i:s");
+                            $status = 0;
+                            $note = $_POST['note'];
+                            foreach ($_SESSION['my_cart'] as $cart) {
+                                extract($cart);
+                                $total_price_all += $total_price ;
+                                insert_order($product_id, $quantity, $user_id, $note, $status);
+                            }
+                            //thêm note vào session my_cart
+                            foreach ($_SESSION['my_cart'] as $key => $value) {
+                                $_SESSION['my_cart'][$key]['note'] = $note;
+                            }
+                        
+                        
+                        unset($_SESSION['my_cart']);
+                        require_once"view/client/payment.php";
+                    }else {
+                        echo "<meta http-equiv='refresh' content='0;URL=?url=order_oneProduct'/>";
+                        exit();
+                    }
                     break;
 
                 case "my_ordered":
-                    
+
                     if (isset($_SESSION['user'])) {
                         $user_id = $_SESSION['user']['user_id'];
                         $user = select_by_id_users($user_id);
@@ -434,13 +496,13 @@
                     require_once"view/client/my-ordered.php";
                     
                     break;
+
                     
                 default:
                     require_once"view/client/home.php";
                 break;
-        }
-    }else {
+        }}else {
         require_once"view/client/home.php";
-    }
+        }
 
     require_once"src/components/footer.php";

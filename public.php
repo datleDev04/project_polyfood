@@ -94,6 +94,20 @@
                 icon: 'success'
             });
         }
+    function MinProduct_Alert() {
+            Swal.fire({
+                title: 'Lỗi',
+                text: 'Phải có ít nhất một sản phẩm này',
+                icon: 'error'
+            });
+        }
+    function searchErrors_Alert() {
+            Swal.fire({
+                title: 'Lỗi',
+                text: 'KHÔNG TÌM THẤY SẢN PHẨM',
+                icon: 'error'
+            });
+        }
     function NotSingIn() {
         Swal.fire({
             title: 'BẠN CHƯA ĐĂNG NHẬP  ',
@@ -114,6 +128,29 @@
 
             }
         });
+    }
+    // function submitChildForm(event) {
+    // event.preventDefault();
+
+    // // Lấy dữ liệu từ form
+    // var formData = new FormData(document.getElementById("childForm"));
+
+    // // Thực hiện yêu cầu Ajax
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", "process_child_form.php", true);
+    // xhr.onreadystatechange = function() {
+    //     if (xhr.readyState == 4 && xhr.status == 200) {
+    //         // Xử lý kết quả từ server nếu cần
+    //         console.log(xhr.responseText);
+    //     }
+    // };
+    // xhr.send(formData);
+    //}
+
+    function submitChildForm(event) {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt
+        // Thực hiện xử lý JavaScript hoặc gọi AJAX tại đây nếu cần
+        document.getElementById("childForm").submit(); // Tiến hành submit form con
     }
 </script>
 

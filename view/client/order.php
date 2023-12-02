@@ -1,13 +1,7 @@
 <?php
 
-$items = $_SESSION['my_cart'];
-$total_price_all = 0;
-if (isset($_SESSION['my_cart'])) {
-  foreach ($items as $item) {
-    extract($item);
-    $total_price_all += $total_price;
-  }
-}
+
+
 
 if (isset($_SESSION['user'])) {
   $user_id = $_SESSION['user']['user_id'];
@@ -57,13 +51,13 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );" type="number" name="phone" id="p
       </div>
 
       <div class="flex flex-col gap-2 form__group">
-        <label for="email">Email</label>
+        <label for="diachi">Địa chỉ</label>
         <input style="background: rgba( 255, 255, 255, 0.25 );
 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.23);
 backdrop-filter: blur( 0px );
 -webkit-backdrop-filter: blur( 0px );
 border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );" type="email" name="email" id="email" class="w-full p-3 text-sm form__input focus:outline-none" placeholder="Nhập email" value="<?= isset($_SESSION['user']) ? $email : '' ?>" />
+border: 1px solid rgba( 255, 255, 255, 0.18 );" type="text" name="diachi" id="diachi" class="w-full p-3 text-sm form__input focus:outline-none" placeholder="Nhập địa chỉ" value="<?= isset($_SESSION['user']) ? $address : '' ?>" />
       </div>
     </div>
 
@@ -101,8 +95,9 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );" type="email" name="email" id="em
 
 
     <div class="flex flex-wrap justify-center gap-5 list__products">
+      
       <?php
-      foreach ($_SESSION['my_cart'] as $item) {
+       foreach ($_SESSION['my_cart'] as $item) {
       ?>
         <div style="
                   background: rgba(255, 255, 255, 0.25);

@@ -1,4 +1,13 @@
-
+<?
+extract($_REQUEST);
+if (isset($_SESSION['user'])) {
+    $user_id = $_SESSION['user']['user_id'];
+    $user = select_by_id_users($user_id);
+    extract($user);
+}
+$order = order_select_by_user_id($user_id);
+extract($order);
+?>
 <div class="container mx-auto mt-10">
   <main class="w-full px-8 mt-14 md:px-14 lg:px-24">
     <div
@@ -37,7 +46,7 @@
       }, 1000)
       //Chuyển trang sau 5s
       setTimeout(() => {
-        window.location.href = 'index.php?url=trangchu'
+        window.location.href = 'index.php?url=my_ordered'
       }, 5000)
     </script>
 
@@ -83,20 +92,33 @@
                     } ?>
         </p>
       </div>
+      <br>
+      <div
+        class="flex flex-col justify-between sm:flex-row payment__method sm:gap-5"
+      >
+        <h1 class="text-base font-bold text-gray-700 sm:text-lg">Địa chỉ :</h1>
+        <p class="text-gray-500">
+          <?php if ($address != "") {
+                        echo $address;
+                    } else {
+                        echo "Nhận tại canteen";
+                    } ?>
+        </p>
+      </div>
 
       <div
         class="flex flex-col justify-between sm:flex-row payment__method sm:gap-5"
       >
         <h1 class="text-lg font-bold text-gray-700">Tổng thanh toán :</h1>
         <p class="text-lg text-orange-500">
-          <?= number_format($total_price) ?>đ
+        <?= number_format($total_price_all) ?>đ
         </p>
       </div>
     </div>
 
     <div class="flex w-full my-10 cancel-oder sm:justify-end">
       <a
-        href="index.php?action=index.php"
+        href="?url=trangchu"
         class="hidden mt-5 text-sm font-semibold text-indigo-600 lg:flex"
       >
         <svg

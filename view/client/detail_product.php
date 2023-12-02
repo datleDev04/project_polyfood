@@ -98,9 +98,6 @@
                     <button class="flex items-center px-5 py-2 mt-5 text-sm text-white bg-orange-600 rounded-lg">
                         <p class="px-2 font-bold text-base">Thêm vào giỏ</p>
                     </button>
-                    <a href="?url=order" class="flex items-center px-5 py-2 mt-5 ml-5 text-sm text-white bg-orange-600 rounded-lg">
-                        <p class="px-2 font-bold text-base">Mua Ngay</p>
-                    </a>
                 </div>
             </form>
         </div>

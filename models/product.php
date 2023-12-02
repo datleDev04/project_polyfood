@@ -71,46 +71,32 @@
         return pdo_query($sql);
     }
        
-    function products_select_by_menu_id($menu_id){
-        $sql = "SELECT * FROM products WHERE menu_id=$menu_id";
-        return pdo_query($sql);
-    }
         
     function products_select_by_categories($category_id){
         $sql = "SELECT * FROM products WHERE category_id=$category_id";
         return pdo_query($sql);
     }
        
-    function products_select_keyword($keyword){
+    function products_select_keyword($keyword,$priceFilter,$viewsFilter){
         $sql = "SELECT * FROM products pro "
                 . " JOIN categories cate ON cate.category_id=pro.category_id "
                 . " WHERE product_name LIKE '%$keyword%' OR product_name LIKE '%$keyword%'";
-        return pdo_query($sql);
-    }
-    
-    function products_select_page(){
-        if(!isset($_SESSION['page_no'])){
-            $_SESSION['page_no'] = 0;
-        }
-        if(!isset($_SESSION['page_count'])){
-            $row_count = pdo_query_value("SELECT count(*) FROM products");
-            $_SESSION['page_count'] = ceil($row_count/10.0);
-        }
-        if(exist_param("page_no")){
-            $_SESSION['page_no'] = $_REQUEST['page_no'];
-        }
-        if($_SESSION['page_no'] < 0){
-            $_SESSION['page_no'] = $_SESSION['page_count'] - 1;
-        }
-        if($_SESSION['page_no'] >= $_SESSION['page_count']){
-            $_SESSION['page_no'] = 0;
-        }
-        $sql = "SELECT * FROM products ORDER BY product_id LIMIT ".$_SESSION['page_no'].", 10";
-        return pdo_query($sql);
-    }
-    
 
 
+                if ($priceFilter == "low") {
+                    $sql.= " ORDER BY price ASC";
+                 }
+                 if ($priceFilter == "high") {
+                    $sql.= " ORDER BY price DESC";
+                 }
+                 if ($viewsFilter == "popular") {
+                    $sql.= " ORDER BY price DESC";
+                 }
+                 if ($viewsFilter == "least") {
+                    $sql.= " ORDER BY price ASC";
+                 }
+        return pdo_query($sql);
+    }
 
     function loadone_product($product_id)
 {
@@ -118,12 +104,24 @@
     $sp = pdo_query_one($sql);
     return $sp;
 }
-function loadall_product($category_id)
+function loadall_product($category_id,$priceFilter,$viewsFilter)
 {
     $sql = "select * from products where 1";
     if ($category_id > 0) {
         $sql .= " and category_id='" . $category_id . "'";
     }
+    if ($priceFilter == "low") {
+        $sql.= " ORDER BY price ASC";
+     }
+     if ($priceFilter == "high") {
+        $sql.= " ORDER BY price DESC";
+     }
+     if ($viewsFilter == "popular") {
+        $sql.= " ORDER BY view DESC";
+     }
+     if ($viewsFilter == "least") {
+        $sql.= " ORDER BY view ASC";
+     }
 
     $listsanpham = pdo_query($sql);
     return $listsanpham;
@@ -156,4 +154,6 @@ function load_product_cungloai($product_id, $category_id)
     $listsanpham = pdo_query($sql);
     return $listsanpham;
 }
+
+//  
 ?>
