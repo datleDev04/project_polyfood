@@ -235,15 +235,6 @@
                     }
                     require_once "view/client/product.php";
                     break;
-                // case ".'$_SERVER["REQUEST_URI"]'.'&filter'":
-
-                //     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                //         $priceFilter = $_POST["priceFilter"];
-                //         $viewsFilter = $_POST["viewsFilter"];
-
-                //     }
-                //     require_once "view/client/product.php";
-                //     break;
             
                 
                 case "allproduct":
