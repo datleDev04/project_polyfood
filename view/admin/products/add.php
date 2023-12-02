@@ -105,7 +105,7 @@ rounded-md text-gray-500
                         </span>
                     </div>
                     <div class="form__add-category--list-button w-full mt-7 flex gap-3 justify-center items-center">
-                        <button type="submit" name="add" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow: 1.5px 1.5px
+                        <button type="submit" name="btn_insert" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow: 1.5px 1.5px
 2.5px #babecc, -2px -2px 5px #fff;" class="p-2 border w-[120px] text-center
 rounded-md text-sm hover:bg-gray-200 leading-4 ">
                             Thêm mới

@@ -6,11 +6,6 @@
 
     }
 
-    function products_insert($product_name, $price, $discount, $image, $category_id, $quantity, $detail){
-        $sql = "INSERT INTO products(product_name, price, discount, image, category_id,  quantity, detail, menu_id) 
-                          VALUES ( '$product_name', $price, $discount, '$image', $category_id , $quantity, '$detail')";
-        pdo_execute($sql);
-    }
         
     function products_update($product_id,$product_name, $price, $discount, $image, $category_id,  $quantity, $detail){
         $sql = "UPDATE products SET product_name='$product_name', price=$price, discount=$discount, image='$image', category_id=$category_id, quantity=$quantity, detail='$detail' WHERE product_id=$product_id";
@@ -77,22 +72,22 @@
         return pdo_query($sql);
     }
        
-    function products_select_keyword($keyword,$priceFilter,$viewsFilter){
+    function products_select_keyword($keyword,$typeFilter){
         $sql = "SELECT * FROM products pro "
                 . " JOIN categories cate ON cate.category_id=pro.category_id "
                 . " WHERE product_name LIKE '%$keyword%' OR product_name LIKE '%$keyword%'";
 
 
-                if ($priceFilter == "low") {
+                if ($typeFilter == "low") {
                     $sql.= " ORDER BY price ASC";
                  }
-                 if ($priceFilter == "high") {
+                 if ($typeFilter == "high") {
                     $sql.= " ORDER BY price DESC";
                  }
-                 if ($viewsFilter == "popular") {
+                 if ($typeFilter == "popular") {
                     $sql.= " ORDER BY price DESC";
                  }
-                 if ($viewsFilter == "least") {
+                 if ($typeFilter == "least") {
                     $sql.= " ORDER BY price ASC";
                  }
         return pdo_query($sql);
@@ -104,22 +99,22 @@
     $sp = pdo_query_one($sql);
     return $sp;
 }
-function loadall_product($category_id,$priceFilter,$viewsFilter)
+function loadall_product($category_id,$typeFilter)
 {
     $sql = "select * from products where 1";
     if ($category_id > 0) {
         $sql .= " and category_id='" . $category_id . "'";
     }
-    if ($priceFilter == "low") {
+    if ($typeFilter == "low") {
         $sql.= " ORDER BY price ASC";
      }
-     if ($priceFilter == "high") {
+     if ($typeFilter == "high") {
         $sql.= " ORDER BY price DESC";
      }
-     if ($viewsFilter == "popular") {
+     if ($typeFilter == "popular") {
         $sql.= " ORDER BY view DESC";
      }
-     if ($viewsFilter == "least") {
+     if ($typeFilter == "least") {
         $sql.= " ORDER BY view ASC";
      }
 
@@ -166,6 +161,12 @@ function select_all_users()
 {
     $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id";
     return pdo_query($sql);
+}
+
+function products_insert($product_name, $price, $discount, $image, $category_id, $quantity, $detail){
+    $sql = "INSERT INTO products(product_name, price, discount, image, category_id,  quantity, detail) 
+                      VALUES ( '$product_name', $price, $discount, '$image', $category_id , $quantity, '$detail')";
+    pdo_execute($sql);
 }
 //  
 ?>

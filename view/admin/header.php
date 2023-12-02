@@ -3,20 +3,21 @@
 -35px -35px 70px #ffffff;
 " class="w-full h-[60px] flex items-center justify-between px-5 py-2">
         <div class="logo-[100px] h-auto px-2 flex gap-2 items-center justify-center">
-            <a href="../../index.php">
-                <img src="../../src/assets/logo/logo.jpg" alt="logo" class="w-16 h-auto" />
+            <a class="flex font title-font font-medium items-center mb-4 md:mb-0" href="../../index.php" >
+                <span class="text-orange-600">poly</span><span class="text-blue-600 font-semibold">F</span><span class="text-orange-600 font-semibold">oo</span><span class="text-green-600 font-semibold">d</span>
             </a>
+
 
         </div>
         <div class="account__admin flex items-center gap-2">
             <div class="account__admin--avatar">
 
-                <img src="#" alt=""
+                <img src="../../src/assets/images/users/<?= $_SESSION['user']['image'] ?>" alt=""
                     class="w-10 h-10 rounded-full" />
             </div>
             <div class="account__admin--name flex flex-col gap-1">
                 <p class="font-medium text-sm text-gray-500">
-                    abs
+                <?= $_SESSION['user']['name'] ?>
                 </p>
                 <a href="index.php?action=logout" class="logout text-xs text-gray-500 flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

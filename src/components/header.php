@@ -65,7 +65,9 @@
                                 role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                 <div class="py-1" role="none">
                                 <?php if (isset($_SESSION['user'])) {
-                                    if ($_SESSION['user']['user_id'] == 1) {    
+
+                                    if ($_SESSION['user']['role_id'] == 1) {   
+                                         
                                     echo ' <a href="../../project_polyfood/view/admin/index.php" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
                                         role="menuitem" tabindex="-1" id="menu-item-2">
                                         Trang quản trị

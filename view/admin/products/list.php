@@ -9,15 +9,17 @@
             <h1 class="text-xl text-left text-gray-500 uppercase">
                 Tất cả sản phẩm
             </h1>
+            <a href="index.php?url=add_product"style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
+1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" class="ml-[650px] p-2  border rounded-md w-[120px] text-center   text-xs hover:bg-gray-200 leading-4 ">
+                    Thêm mới
+                </a>
         </section>
         <form action="index.php?action=deleteSelectedCategory" method="post">
             <div class="w-full mt-4 list__accounts-table">
                 <table class="w-full mx-auto text-center rounded-md shadow-md my-3">
                     <thead class="px-2 bg-gray-200 boder rounded-t-md">
                         <tr>
-                            <th>
-                                <input type="hidden" />
-                            </th>
+                           
                             <th class="p-2 text-xs font-medium ">
                                 ID
                             </th>
@@ -56,9 +58,7 @@
                             $img = "../../src/assets/images/products/" . $image;
                             ?>
                             <tr class="border-t-2 border-dashed">
-                                <td class="p-2 whitespace-nowrap">
-                                    <input type="checkbox" name="product_id[]" value="<?= $product_id ?>" class="checkbox" />
-                                </td>
+                                
 
                                 <td class="p-2 ">
                                     <p class="text-xs text-gray-900">
@@ -123,26 +123,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-center w-full gap-5 px-5 list__accounts-table--button mt-7">
-                <label for="checkAll" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" id="select" class=" p-3  border  w-[120px] text-center rounded-md text-xs hover:bg-gray-200 leading-4 ">
-                    Chọn tất cả
-                </label>
-                <label for="checkAll" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" id="unselect" class=" p-3  border rounded-md w-[120px] text-center text-xs hover:bg-gray-200 leading-4 ">
-                    Bỏ chọn tất cả
-                </label>
-
-                <button style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" type="submit" name="btn_delete" class=" p-3 whitespace-nowrap border rounded-md w-[120px] text-center   text-xs hover:bg-gray-200 leading-4 ">
-                    Xóa mục đã chọn
-                </button>
-                <input type="checkbox" hidden id="checkAll" name="checkAll">
-                <button style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" class="p-2  border rounded-md w-[120px] text-center   text-xs hover:bg-gray-200 leading-4 ">
-                    <a href="index.php?url=add_product">Thêm mới</a>
-                </button>
-            </div>
+            
         </form>
     </section>
 </main>

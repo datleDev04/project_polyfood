@@ -42,26 +42,19 @@
             <!-- LỌC CHO TÌM KIẾM -->
            <!-- <form action="<?php echo $_SERVER['REQUEST_URI']; ?>&filter=<?=$keyword?>" method="POST" class="flex justify-between items-center "> -->
             <!-- LỌC TẤT CẢ SẢN PHẨM -->
-            <form action="?url=allproduct&filter" method="POST" class="flex justify-between items-center ">
+            <form action="?url=allproduct&filter" method="POST" class="flex justify-end ">
     <div>
-        <label for="priceFilter" class="text-lg font-semibold">Filter by Price:</label>
-        <select name="priceFilter" id="priceFilter" class="ml-2 p-2 border rounded border-gray-300"">
-            <option class="py-3" value="" >All</option>
-            <option class="py-2" value="low" >Low to High</option>
-            <option class="py-2" value="high" >High to Low</option>
+        <select name="typeFilter" id="typeFilter" class="ml-2 float-right p-2 border rounded border-gray-300 w-[200px]"">
+            <option class="py-3" value="" >Tất Cả</option>
+            <option class="py-2" value="low" >Giá Thấp</option>
+            <option class="py-2" value="high" >Giá Cao</option>
+            <option class="py-2" value="popular" >Xem nhiều</option>
+            <option class="py-2" value="least" >Xem ít</option>
         </select>
     </div>
-    <div>
-        <label for="viewsFilter" class="text-lg font-semibold">Filter by Views:</label>
-        <select name="viewsFilter" id="viewsFilter" class="ml-2 p-2 border rounded border-gray-300"">
-            <option class="py-2" value="" >All</option>
-            <option class="py-2" value="popular" >Most Popular</option>
-            <option class="py-2" value="least" >Least Popular</option>
-        </select>
-    </div>
-    <button type="submit" value="Apply Filters" class="ml-2 p-2 w-[180px] bg-orange-600 text-white rounded">Lọc</button>
+    <button type="submit" value="Apply Filters" class="ml-2 p-2 w-[100px] bg-orange-600 text-white rounded">Lọc</button>
 </form>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4 pt-0">
 
                 <?php foreach ($listall_product as $listall_product) : ?>
                     <?php extract($listall_product); ?>
@@ -77,12 +70,15 @@
               border: 1px solid rgba(255, 255, 255, 0.18);" class="p-4 min-w-[170px]  rounded-2xl space-y-2">
                         <a class="mt-2" href="index.php?url=detail_product&product_id=<?=$product_id?>">
                             <img class="rounded-xl min-w-[150px] h-[150px] lg:h-[180px] block mx-auto object-cover object-center" src="<?= $hinh ?>" alt="" class="rounded">
-                            <h2 class="truncate mt-3 font-medium"><?= $product_name ?></h2>
+                            <h2 class="truncate mt-3 font-bold text-xl"><?= $product_name ?></h2>
                             <h1 class="text-sm font-semibold flex justify-between items-center  text-orange-600 mt-2">
                                 <span class="text-center text-xl">
                                     <?= number_format($price, 0, ",", ".") ?>đ
                                      </span>
                             </h1>
+                            <p class="leading-relaxed text-gray-700 mt-1 text-xs limited__content-2 ">
+                               ( <?= $view ?>  lượt xem)
+                            </p>
                             <p class="leading-relaxed text-gray-700 mt-1 text-xs limited__content-2 h-10">
                                 <?= $detail ?>
                             </p>

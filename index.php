@@ -215,20 +215,18 @@
                     // danh mục
                     $listall_category = loadall_category();
                     // sản phẩm
-                    $listall_product = products_select_keyword($keyword,"","");
+                    $listall_product = products_select_keyword($keyword,"");
                     if (isset($_GET['filter'])) {
                         if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-                            # code...
-                                $priceFilter = $_POST["priceFilter"];
-                                $viewsFilter = $_POST["viewsFilter"];
+                                $typeFilter = $_POST["typeFilter"];
 
                         }
 
-                        $listall_product = products_select_keyword($keyword,$priceFilter,$viewsFilter);
+                        $listall_product = products_select_keyword($keyword,$typeFilter);
                     }
                     
                     if ($listall_product == []) {
-                        $listall_product = loadall_product("","","");
+                        $listall_product = loadall_product("","");
                         
                         echo"<script> searchErrors_Alert() ;</script>";
 
@@ -241,18 +239,17 @@
                     // danh mục
                     $listall_category = loadall_category();
                     // sản phẩm
-                    $priceFilter = $viewsFilter = "";
+                    // $typeFilter  = "";
                     if (isset($_GET['filter'])) {
                         if ($_SERVER["REQUEST_METHOD"] == 'POST') {
                             # code...
-                                $priceFilter = $_POST["priceFilter"];
-                                $viewsFilter = $_POST["viewsFilter"];
+                                $typeFilter = $_POST["typeFilter"];
 
                         }
 
-                        $listall_product = loadall_product("",$priceFilter,$viewsFilter);
+                        $listall_product = loadall_product("",$typeFilter);
                     }else {
-                         $listall_product = loadall_product("","","");
+                         $listall_product = loadall_product("","");
                     }
 
                     require_once "view/client/product.php";

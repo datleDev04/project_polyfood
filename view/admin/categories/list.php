@@ -15,15 +15,40 @@
                             <h1 class="text-left text-xl text-gray-500 uppercase">
                                 Danh mục sản phẩm
                             </h1>
+                            <button  style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
+1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;"
+                                    class=" ml-[600px] p-2  border rounded-md w-[120px] text-center   text-xs hover:bg-gray-200 leading-4 ">
+                                    <a  href="?url=adddm">
+                                        Thêm mới
+                                    </a>
+                                </button>
                         </section>
                         <form action="?url=adddm" method="post">
+                        <!-- <div class="list__accounts-table--button w-full  px-5 mt-7 flex justify-center gap-5">
+                                <label for="checkAll" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
+1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" id="select"
+                                    class=" p-3  border  w-[120px] text-center rounded-md text-xs hover:bg-gray-200 leading-4 ">
+                                    Chọn tất cả
+                                </label>
+                                <label for="checkAll" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
+1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" id="unselect"
+                                    class=" p-3  border rounded-md w-[120px] text-center text-xs hover:bg-gray-200 leading-4 ">Bỏ
+                                    chọn tất cả
+                                </label>
+
+                                <button style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
+1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" type="submit" name="btn_delete"
+                                    class=" p-3  border rounded-md w-[120px] text-center whitespace-nowrap  text-xs hover:bg-gray-200 leading-4 ">
+                                    Xóa mục đã chọn
+                                </button>
+                                <input type="checkbox" hidden id="checkAll" name="checkAll">
+                                
+                            </div> -->
                             <div class="list__accounts-table w-full   mt-4">
                                 <table class="w-[900px] mx-auto text-center rounded-md shadow-md my-3">
                                     <thead class="boder bg-gray-200 px-2 rounded-t-md">
                                         <tr>
-                                            <th class="p-2">
-                                                <input type="hidden" />
-                                            </th>
+                                            
                                             <th class=" text-xs  p-2  font-medium">
                                                 ID
                                             </th>
@@ -47,10 +72,7 @@
                                         // var_dump($item);
                                             ?>
                                         <tr class="border-t-2 border-dashed">
-                                            <td class="px-5 whitespace-nowrap">
-                                                <input type="checkbox" name="category_id[]" value="<?= $category_id ?>"
-                                                    class="checkbox" />
-                                            </td>
+                                            
 
                                             <td class="p-2 ">
                                                 <p class="text-xs text-gray-900">
@@ -104,32 +126,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="list__accounts-table--button w-full  px-5 mt-7 flex justify-center gap-5">
-                                <label for="checkAll" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" id="select"
-                                    class=" p-3  border  w-[120px] text-center rounded-md text-xs hover:bg-gray-200 leading-4 ">
-                                    Chọn tất cả
-                                </label>
-                                <label for="checkAll" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" id="unselect"
-                                    class=" p-3  border rounded-md w-[120px] text-center text-xs hover:bg-gray-200 leading-4 ">Bỏ
-                                    chọn tất cả
-                                </label>
-
-                                <button style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" type="submit" name="btn_delete"
-                                    class=" p-3  border rounded-md w-[120px] text-center whitespace-nowrap  text-xs hover:bg-gray-200 leading-4 ">
-                                    Xóa mục đã chọn
-                                </button>
-                                <input type="checkbox" hidden id="checkAll" name="checkAll">
-                                <button style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
-1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;"
-                                    class="p-2  border rounded-md w-[120px] text-center   text-xs hover:bg-gray-200 leading-4 ">
-                                    <a href="?url=adddm">
-                                        Thêm mới
-                                    </a>
-                                </button>
-                            </div>
+                            
                         </form>
                     </section>
                 </main>

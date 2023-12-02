@@ -29,8 +29,10 @@ if (isset($url) && $url != "") {
         case 'xoa_product':
             if (isset($_GET['product_id'])) {
                 $product_id = $_GET['product_id'];
-                delete_product($product_id);
+                products_delete($product_id);
             }
+            $items = products_select_all();
+
             $listall_product = loadallproduct();
             require_once "../admin/products/list.php";
             break;
@@ -44,7 +46,6 @@ if (isset($url) && $url != "") {
                 $price = $_POST['price'];
                 $discount = $_POST['discount'];
                 $quantity = $_POST['quantity'];
-                $discount = $_POST['discount'];
                 $detail = $_POST['detail'];
                 $upload_image = $_FILES['upload_image']['name'];
                 $target_dir = "../../src/assets/images/products/";
@@ -67,16 +68,62 @@ if (isset($url) && $url != "") {
             require_once "../admin/products/update.php";
             break;
         case 'add_product':
-            $product_name = "";
+            $error = [];
+            $flag = true;
+            if (!isset($_POST['btn_insert'])) {
+                $product_name = $price = $discount = $quantity = $detail = $category_id="";
+            }
             if (isset($_POST['btn_insert'])) {
+                
                 $product_name = $_POST['product_name'];
                 $price = $_POST['price'];
                 $discount = $_POST['discount'];
                 $quantity = $_POST['quantity'];
                 $detail = $_POST['detail'];
+                $category_id= $_POST['category_id'];
+                $image = $_FILES['image'];
+                // var_dump($product_name,$price,$discount,$quantity,$detail,$category_id);
+
+                if (strlen($product_name) <= 0) {
+                    $error['product_name'] = "Bạn chưa nhập tên sản phẩm!";
+                    $flag = false;
+                }
+                if (products_name_exist($product_name)) {
+                    $error['product_name'] = "Tên sản phẩm này đã tồn tại!";
+                    $flag = false;
+                }
+                if ($price <= 0) {
+                    $error['price'] = "Giá sản phẩm phải lớn hơn 0!";
+                    $flag = false;
+                }
+                if (strlen($price) <= 0) {
+                    $error['price'] = "Bạn chưa nhập giá!";
+                    $flag = false;
+                }
+                if (strlen($discount) <= 0) {
+                    $error['discount'] = "Bạn chưa nhập số phần trăm giảm giá!";
+                    $flag = false;
+                }
+                if ($quantity <= 0) {
+                    $error['quantity'] = "Số lượng sản phẩm phải lớn hơn 0!";
+                    $flag = false;
+                }
+                if (strlen($quantity) <= 0) {
+                    $error['quantity'] = "Bạn chưa nhập số lượng!";
+                    $flag = false;
+                }
+                if (strlen($detail) <= 0) {
+                    $error['detail'] = "Bạn chưa nhập chi tiết sản phẩm!";
+                    $flag = false;
+                }
+                if ($flag) {
                 $target_dir = "../../src/assets/images/products/";
-                $upload_image = save_file("image", "$target_dir");
-                $image = strlen("$upload_image") > 0 ? $upload_image : $image;
+                $upload_image = save_file("image", $target_dir);
+                $image = strlen("$upload_image") > 0 ? $upload_image : 'product.png';
+                // var_dump($image);
+
+        //         $upload_image = save_file("image", "$IMAGE_DIR/products/");
+        // $image = strlen("$upload_image") > 0 ? $upload_image : 'product.png';
                 try {
                     products_insert($product_name, $price, $discount, $image, $category_id, $quantity, $detail);
                     unset($product_name, $price, $discount, $image, $category_id, $quantity, $detail);
@@ -84,6 +131,8 @@ if (isset($url) && $url != "") {
                 } catch (Exception $exc) {
                     $MESSAGE = "Thêm mới thất bại!";
                 }
+                global $product_id, $product_name, $price, $discount, $image, $category_id,  $quantity, $detail;
+            }
             }
             $productall = loadallproduct();
             $cates = loadall_category();
