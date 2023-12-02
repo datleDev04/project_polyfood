@@ -6,14 +6,14 @@
 
     }
 
-    function products_insert($product_name, $price, $discount, $image, $category_id, $quantity, $detail, $menu_id){
+    function products_insert($product_name, $price, $discount, $image, $category_id, $quantity, $detail){
         $sql = "INSERT INTO products(product_name, price, discount, image, category_id,  quantity, detail, menu_id) 
-                          VALUES ( '$product_name', $price, $discount, '$image', $category_id , $quantity, '$detail', $menu_id)";
+                          VALUES ( '$product_name', $price, $discount, '$image', $category_id , $quantity, '$detail')";
         pdo_execute($sql);
     }
         
-    function products_update($product_id,$product_name, $price, $discount, $image, $category_id,  $quantity, $detail, $menu_id){
-        $sql = "UPDATE products SET product_name='$product_name', price=$price, discount=$discount, image='$image', category_id=$category_id, quantity=$quantity, detail='$detail', menu_id=$menu_id  WHERE product_id=$product_id";
+    function products_update($product_id,$product_name, $price, $discount, $image, $category_id,  $quantity, $detail){
+        $sql = "UPDATE products SET product_name='$product_name', price=$price, discount=$discount, image='$image', category_id=$category_id, quantity=$quantity, detail='$detail' WHERE product_id=$product_id";
         pdo_execute($sql);
     }
         
@@ -155,5 +155,17 @@ function load_product_cungloai($product_id, $category_id)
     return $listsanpham;
 }
 
+
+function loadallproduct(){
+    $sql = "select * from products";
+    $listsanpham = pdo_query($sql);
+    return $listsanpham;
+}
+
+function select_all_users()
+{
+    $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id";
+    return pdo_query($sql);
+}
 //  
 ?>

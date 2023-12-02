@@ -27,11 +27,11 @@ function delete_users($user_id)
         pdo_execute($sql);
     }
 }
-function select_all_users()
-{
-    $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id";
-    return pdo_query($sql);
-}
+// function select_all_users()
+// {
+//     $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id";
+//     return pdo_query($sql);
+// }
 function select_by_id_users($user_id)
 {
     $sql = "SELECT * FROM users WHERE user_id=$user_id";
@@ -96,4 +96,9 @@ function users_exist_by_password_id($password, $user_id)
 {
     $sql = "SELECT count(*) FROM users WHERE password='$password' AND user_id = $user_id";
     return pdo_query_value($sql) > 0;
+}
+
+function roles_select_all(){
+    $sql = "SELECT * FROM roles";
+    return pdo_query($sql);
 }
