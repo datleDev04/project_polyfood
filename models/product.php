@@ -13,20 +13,20 @@
     }
         
     function products_delete($product_id){
-        if(is_array($product_id)){
+        // if(is_array($product_id)){
             
-            foreach ($product_id as $id_tmp) {
+        //     foreach ($product_id as $id_tmp) {
                 
-        $sql = "DELETE FROM products WHERE  product_id=$id_tmp";
-        // var_dump($sql);
-        //     die;
-        pdo_execute($sql);
-            }
-        }
-        else{
+        // $sql = "DELETE FROM products WHERE  product_id=$id_tmp";
+        // // var_dump($sql);
+        // //     die;
+        // pdo_execute($sql);
+        //     }
+        // }
+        // else{
         $sql = "DELETE FROM products WHERE  product_id=$product_id";
             pdo_execute($sql);
-        }
+        //}
     }
         
     function products_select_all(){
