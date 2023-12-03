@@ -478,10 +478,12 @@
                         $user_id = $_SESSION['user']['user_id'];
                         $user = select_by_id_users($user_id);
                         extract($user);
+                        $order = join_order_product($user_id);
+                        extract($order);
+                        require_once"view/client/my-ordered.php";
+                    }else {
+                        check_signIn();
                     }
-                    $order = join_order_product($user_id);
-                    extract($order);
-                    require_once"view/client/my-ordered.php";
                     
                     break;
 

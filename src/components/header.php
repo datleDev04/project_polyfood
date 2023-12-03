@@ -42,11 +42,11 @@
             <!-- END SEARCHING BAR  -->
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
                 <ul class="flex w-full justify-between gap-6 text-sm uppercase menu">
-                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=trangchu">Trang chủ</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=allproduct">Sản Phẩm</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=cart">Giỏ hàng</a></li>
-                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="#">Tài khoản</a></li>
-                    <li>
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=my_ordered">Đơn hàng của tôi</a></li>
+                        
+                        
                         <div class="relative inline-block text-left group">
                             <div>
                                 <button type="button" id="menu-drop" aria-expanded="true" aria-haspopup="true">
@@ -72,15 +72,7 @@
                                         role="menuitem" tabindex="-1" id="menu-item-2">
                                         Trang quản trị
                                     </a> ';}} ?>
-                                    <a href="#" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
-                                        role="menuitem" tabindex="-1" id="menu-item-1">
-                                        Hỗ trợ
-                                    </a>
-                                    <?php if (isset($_SESSION['user'])) {
-                                    echo ' <a href="?url=my_ordered" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
-                                        role="menuitem" tabindex="-1" id="menu-item-2">
-                                        Đơn hàng của tôi
-                                    </a> ';} ?>
+                                    
                                     <?php if (isset($_SESSION['user'])) {
                                     echo '
                                     <a href="?url=capnhattk"

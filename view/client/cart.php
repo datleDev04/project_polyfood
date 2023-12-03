@@ -49,9 +49,9 @@
                                     </svg>
                                 </button>
 
-                                <input id="quantity" name="quantity"
+                                <input  id="quantity" name="quantity"
                                     class="w-10 mx-2 text-xs text-center border rounded-md sm:text-sm" type="text"
-                                    value="<?= $item['quantity'] ?>" />
+                                    value="<?= $item['quantity'] ?>" readonly/>
                                 <input type="hidden" id="product_id" name="product_id"
                                     value="<?= $item['product_id'] ?>" />
                                 <button style="box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37)" name="choose" value="1"
