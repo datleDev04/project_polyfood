@@ -123,6 +123,20 @@
                 icon: 'success'
             });
         }
+    function Cancel_orderAlert() {
+            Swal.fire({
+                title: 'HỦY ĐƠN HÀNG THÀNH CÔNG',
+                text: 'CẢM ƠN BẠN ĐÃ SỬ DỤNG DỊCH VỤ CỦA CHÚNG TÔI',
+                icon: 'success'
+            });
+        }
+    function Confirm_orderAlert() {
+            Swal.fire({
+                title: 'CẢM ƠN QUÝ KHÁCH',
+                text: 'CHÚC QUÝ KHÁCH NGON MIỆNG',
+                icon: 'success'
+            });
+        }
 
     
     function changePasswordSuccess_Alert() {

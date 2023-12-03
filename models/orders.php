@@ -52,6 +52,12 @@ function orders_select_last_id()
     return pdo_query_value($sql);
 }
 
+// chuyển trạng thái đơn hàng với input status hủy đơn hàng hay đã nhận hàng
+function confirm_orderStatus($order_id,$status){
+    $sql = "UPDATE orders SET status=$status WHERE order_id=$order_id";
+    pdo_execute($sql);
+}
+
 function order_change_status($order_id)
 {
     $sql = "UPDATE orders SET status=1 WHERE order_id=$order_id";

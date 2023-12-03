@@ -6,11 +6,11 @@
     <main style="border-radius: 10px; background: #fff; " class="w-full  px-20  bg-gray-100">
         <div class="list__product__orded flex flex-col gap-3 items-center justify-center">
             <!-- Đặt vòng for từ đây -->
-            <!-- Khối chứa thông tin sản phẩm -->
             <?php foreach ($order as $item) { ?>
+            <!-- Khối chứa thông tin sản phẩm -->
             <?php extract($item);
                 $total = $price * $quantity; ?>
-            <form class="all__my__cart " action="" method="post">
+            <form class="all__my__cart " action="?url=my_ordered" method="post">
                 <div class="flex sm:flex-row flex-col my-5 gap-3 p-4 border-b-[3px] relative">
                     <div class="order__id bg-orange-500 px-2 py-1 h-8 rounded-full absolute top-o left-0 z-50">
                         <!-- Mã đơn hàng -->
@@ -93,17 +93,25 @@
                             </div>
                         </div>
                         <!-- 2 nút xác nhận và hủy -->
+                        
                         <div class="list__porduct__orded__item__user-check mt-2 flex justify-center items-center gap-2">
-                            <button type="submit" name="confirm"
+                            <?php if ($status == 1) {?>
+                            <a href="?url=my_ordered&confirm_order=<?=$order_id?>"  name="confirm_order"
                                 class="whitespace-nowrap bg-green-500 text-white text-sm font-semibold px-3 py-2 rounded-lg">
                                 Nhận hàng
-                            </button>
-                            <button type="submit" name="confirm"
+                            </a>
+                            <?php }?>
+                            <?php if ($status == 0) {?>
+
+                            <a href="?url=my_ordered&cancel_order=<?= $order_id ?>" name="cancel_order"
                                 class="whitespace-nowrap bg-red-500 text-white text-sm font-semibold px-3 py-2 rounded-lg">
                                 Hủy đơn
-                            </button>
+                            </a>
+                            <?php }?>
+
                             <!-- Nếu nút confim được submit thì hiển thị nút đánh giá -->
                         </div>
+                    
                     </div>
                 </div>
             </form>

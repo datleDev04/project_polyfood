@@ -61,7 +61,7 @@
                         Phản hồi
                     </p>
                 </div>
-                <h2 flex space-x-2 text-3xl text-orange-600 my-4>( <?=$view?> Lượt xem )</h2>
+                <h2 >( <?=$view?> Lượt xem )</h2>
                 <div class="flex space-x-2 text-3xl text-orange-600 my-4">
 
                         <strike class="text-3xl font-light text-gray-400"><?= number_format($price, 0, ",", ".") ?>
@@ -69,6 +69,9 @@
                         <p class="flex gap-2 text-3xl"> <span></span>
                             <?= number_format($price_discount, 0, ",", ".") ?>đ
                     </div>
+
+                    <h2 class="flex space-x-2 text-2xl my-4"> Số Lượng :  <?=$quantity?>  </h2>
+                
 
                 
                 <div class="flex items-center space-x-2 ">

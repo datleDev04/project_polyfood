@@ -499,8 +499,10 @@
                             $note = $_POST['note'];
                             foreach ($_SESSION['my_cart'] as $cart) {
                                 extract($cart);
-                                $total_price_all += $total_price ;
+                                $total_price_all += $price *(1 - $discount / 100) *$quantity ;
                                 insert_order($product_id, $quantity, $user_id, $note, $status);
+                                $oneProduct = loadone_product($product_id);
+                                update_quantity($product_id,$oneProduct['quantity'] -$quantity);
                             }
                             //thêm note vào session my_cart
                             foreach ($_SESSION['my_cart'] as $key => $value) {
@@ -524,6 +526,29 @@
                         extract($user);
                         $order = join_order_product($user_id);
                         extract($order);
+                        
+                            if (isset($_GET['confirm_order']) || isset($_GET['cancel_order'])) {
+                                # code...
+                                if (isset($_GET['confirm_order'])) {
+                                    $order_id = $_GET['confirm_order'];
+                                    $status = 2;
+                                    confirm_orderStatus($order_id,$status);
+                                    echo"<script> Confirm_orderAlert() ;</script>";
+
+                                    $order = join_order_product($user_id);
+                                    extract($order);
+                                }
+                                if (isset($_GET['cancel_order'])) {
+                                    $order_id = $_GET['cancel_order'];
+                                    $status = 3;
+                                    confirm_orderStatus($order_id,$status);
+                                    echo"<script> Cancel_orderAlert() ;</script>";
+
+                                    $order = join_order_product($user_id);
+                                    extract($order);
+                                }
+                            }
+                        
                         require_once"view/client/my-ordered.php";
                     }else {
                         check_signIn();

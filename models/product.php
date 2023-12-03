@@ -180,5 +180,10 @@ function products_insert($product_name, $price, $discount, $image, $category_id,
                       VALUES ( '$product_name', $price, $discount, '$image', $category_id , $quantity, '$detail')";
     pdo_execute($sql);
 }
+
+function update_quantity($product_id,$quantity){
+    $sql = "UPDATE products set quantity =$quantity where product_id = $product_id ";
+    pdo_execute($sql);
+}
 //  
 ?>
