@@ -84,6 +84,11 @@
                                     <?php if (!isset($_SESSION['user'])) {
                                     echo " <button type='submit' class='text-gray-700 hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>Quên mật khẩu</button>";} ?>
                                     </form>
+                                    <form method="POST" class="mb-0"  action="?url=doimk" role="none">
+                                    <?php if (isset($_SESSION['user'])) {
+                                      echo " <button type='submit' class='text-gray-700 hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>
+                                            Đổi mật khẩu</button>";} ?>
+                                    </form>
                                     <form method="POST" class="mb-0"   action="?url=dangnhap" role="none">
                                         <?php if (isset($_SESSION['user'])) {
                                   echo " <button type='submit' name='btn_logoff' class='text-gray-700  hover:bg-slate-300 block w-full px-4 py-2 text-left text-sm uppercase' role='menuitem' tabindex='-1' id='menu-item-3'>Đăng xuất</button>";

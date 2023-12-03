@@ -36,7 +36,7 @@
                  </button>
             </div> -->
             <div class="form__group flex flex-col justify-center items-center gap-3">
-                <a href="forgot-password.php" class="text-center text-gray-500 ">Quên mật khẩu?</a>
+                <a href="?url=quenmk" class="text-center text-gray-500 ">Quên mật khẩu?</a>
                 <button type="submit" name="btn_login" class="text-white bg-orange-600 p-2 rounded-lg w-full sm:w-[300px] text-center">
                     Đăng nhập
                 </button>

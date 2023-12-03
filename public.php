@@ -87,6 +87,14 @@
                 icon: 'error'
             });
         }
+    
+    function changePasswordFail_Alert() {
+            Swal.fire({
+                title: 'ĐỔI MẬT KHẨU THẤT BẠI',
+                text: 'ĐÃ CÓ LỖI XẢY RA, BẠN HÃY KIỂM TRA LẠI THÔNG TIN',
+                icon: 'error'
+            });
+        }
     function FeedbackSuccess_Alert() {
             Swal.fire({
                 title: 'Feedback thành công!',
@@ -108,6 +116,49 @@
                 icon: 'error'
             });
         }
+    function signOutSuccess() {
+            Swal.fire({
+                title: 'ĐĂNG XUẤT THÀNH CÔNG',
+                text: 'CẢM ƠN BẠN ĐÃ SỬ DỤNG DỊCH VỤ CỦA CHÚNG TÔI',
+                icon: 'success'
+            });
+        }
+
+    
+    function changePasswordSuccess_Alert() {
+        Swal.fire({
+            title: 'ĐỔI MẬT KHẨU THÀNH CÔNG ',
+            text: 'CẢM ƠN BẠN ĐÃ SỬ DỤNG DỊCH VỤ CỦA CHÚNG TÔI',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'Trang chủ',
+            cancelButtonText: 'Đóng',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Xử lý đăng ký ở đây
+                // Nếu người dùng đăng ký thành công, bạn có thể thêm sản phẩm vào giỏ hàng.
+                // Swal.fire('Đăng ký thành công!', 'Bây giờ bạn có thể thêm vào giỏ hàng.', 'success');
+                window.location.href = '?url=trangchu';
+            } else {
+                window.location.href = '?url=doimk';
+
+            }
+        });
+    }
+
+    function loginSuccess() {
+        Swal.fire({
+                    icon: 'success',
+                    title: 'ĐĂNG NHẬP THÀNH CÔNG',
+                    text: 'BẠN SẼ ĐƯỢC ĐIỀU HƯỚNG ĐẾN TRANG CHỦ SAU 3 GIÂY',
+                    timer: 3000, // Display the alert for 3 seconds
+                    showConfirmButton: false
+                }).then(function() {
+                    // Redirect to the home page after the alert is closed
+                    window.location.href = '?url=trangchu';
+                });
+    }
     function NotSingIn() {
         Swal.fire({
             title: 'BẠN CHƯA ĐĂNG NHẬP  ',
@@ -129,23 +180,19 @@
             }
         });
     }
-    // function submitChildForm(event) {
-    // event.preventDefault();
+        function togglePasswordVisibility(inputId) {
+            var passwordInput = document.getElementById(`${inputId}`);
+            var showPasswordBtn = document.getElementById("showPasswordBtn");
 
-    // // Lấy dữ liệu từ form
-    // var formData = new FormData(document.getElementById("childForm"));
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPasswordBtn.textContent = "Hide Password";
+            } else {
+                passwordInput.type = "password";
+                showPasswordBtn.textContent = "Show Password";
+            }
+        }
 
-    // // Thực hiện yêu cầu Ajax
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", "process_child_form.php", true);
-    // xhr.onreadystatechange = function() {
-    //     if (xhr.readyState == 4 && xhr.status == 200) {
-    //         // Xử lý kết quả từ server nếu cần
-    //         console.log(xhr.responseText);
-    //     }
-    // };
-    // xhr.send(formData);
-    //}
 
     function submitChildForm(event) {
         event.preventDefault(); // Ngăn chặn hành vi mặc định của trình duyệt

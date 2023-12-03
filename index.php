@@ -34,13 +34,12 @@
                     // echo $user_name;
                     if ($user) {
                         if ($user['password'] == $password) {
-                            $MESSAGE = "Đăng nhập thành công!";
                             $_SESSION["user"] = $user;
-                            $MESSAGE = "Đăng nhập thành thành công!";
                             if (!isset($_SESSION['my_cart'])) {
                                 $_SESSION['my_cart'] =[];      
                             }
-                            echo "<meta http-equiv='refresh' content='0;URL=?url=trangchu'/>";
+                            echo"<script> loginSuccess() ;</script>";
+
 
                         } else {
                             $error['password'] = "Thông tin mật khẩu không chính xác!";
@@ -51,8 +50,9 @@
                 }
                  else {
                     if (exist_param("btn_logoff")) {
-                        $MESSAGE = "Đăng xuất thành công!";
                         unset($_SESSION['user']);
+                        echo"<script> signOutSuccess() ;</script>";
+
                     }
                     $user_name = get_cookie("user_name");
                     $password = get_cookie("password");
@@ -153,6 +153,58 @@
                         }
 
                 include_once"src/components/account/quenmk.php";
+                break;
+
+
+            case 'doimk':
+                // $user_id= $_SESSION['user']['user_id'];
+                $password= $_SESSION['user']['password'];
+                var_dump($password);
+                $password2 = $password3 ="";
+                $flag = true;
+                if(isset($_POST['btn_change'])) {
+                    $error = [];
+                    $password2 = trim($_POST['password2']);
+                    $password3 = trim($_POST['password3']);
+                    $user_name = trim($_POST['user_name']);
+                    $user_id = $_POST['user_id'];
+                    
+                    if (strlen($password2) < 6) {
+                        $error['password2'] = "Mật khẩu mới phải có ít nhất 6 ký tự!";
+                        $flag = false;
+                    }
+                    if (users_exist_by_password_id($password2, $user_id)) {
+                        $error['password2'] = "Mật khẩu mới phải khác mật khẩu hiện tại!";
+                        $flag = false;
+                    }
+                    if ($password2 != $password3) {
+                        $error['password3'] = "Xác nhận mật khẩu mới không đúng!";
+                        $flag = false;
+                    }
+                    if ($flag) {
+                        $user = select_by_name_users($user_name);
+                        if ($user) {
+                            if ($user['password'] == $password) {
+                                try {
+                                    users_change_password_by_username($user_name, $password2);
+                                    $_SESSION['user'] = select_by_name_users($user_name);
+                                    echo"<script> changePasswordSuccess_Alert() ;</script>";
+                                    
+                                    // die;
+                                } catch (Exception $exc) {
+                                    echo"<script> changePasswordFail_Alert() ;</script>";
+                                }
+                            } else {
+                                $error['password'] = "Mật khẩu không chính xác!";
+                            }
+                        } else {
+                            $error['user_name'] = "Tên đăng nhập không chính xác!";
+                        }
+                    }
+                }
+
+                include_once"src/components/account/doimk.php";
+                
                 break;
 
             case 'capnhattk':
