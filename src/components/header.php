@@ -42,7 +42,7 @@
             <!-- END SEARCHING BAR  -->
             <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
                 <ul class="flex w-full justify-between gap-6 text-sm uppercase menu">
-                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=allproduct">Sản Phẩm</a></li>
+                    <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=product">Sản Phẩm</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=cart">Giỏ hàng</a></li>
                     <li><a class="font-bold text-[16px] hover:text-orange-700" href="?url=my_ordered">Đơn hàng của tôi</a></li>
                         

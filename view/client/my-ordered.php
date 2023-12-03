@@ -96,7 +96,11 @@
                         <div class="list__porduct__orded__item__user-check mt-2 flex justify-center items-center gap-2">
                             <button type="submit" name="confirm"
                                 class="whitespace-nowrap bg-green-500 text-white text-sm font-semibold px-3 py-2 rounded-lg">
-                                Đã nhận hàng
+                                Nhận hàng
+                            </button>
+                            <button type="submit" name="confirm"
+                                class="whitespace-nowrap bg-red-500 text-white text-sm font-semibold px-3 py-2 rounded-lg">
+                                Hủy đơn
                             </button>
                             <!-- Nếu nút confim được submit thì hiển thị nút đánh giá -->
                         </div>

@@ -1,6 +1,6 @@
 <section class="max-w-7xl mx-auto px-10">
     <div class="grid md:grid-cols-[190px,auto] mt-10 p-4">
-        <div class="hidden md:block">
+    <div class="hidden md:block">
             <h1 class="text-3xl text-orange-500 font-medium">Danh mục</h1>
             <div style="
               background: rgba(255, 255, 255, 0.25);
@@ -10,7 +10,7 @@
               border-radius: 10px;
               border: 1px solid rgba(255, 255, 255, 0.18);" class="mt-5 p-3 bg-white">
                 <ul class="space-y-4">
-                    <a href="index.php?url=allproduct">
+                    <a href="index.php?url=product">
                         <li class="rounded py-2 px-2 text-gray-700 font-medium">Tất cả </li>
                     </a>
 
@@ -46,7 +46,7 @@
 ';
             }else {
                 echo '
-                <form action="?url=allproduct&filter" method="POST" class="flex justify-end ">     
+                <form action="?url=product&filter" method="POST" class="flex justify-end ">     
                 ';
             }
             ?>

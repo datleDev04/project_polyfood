@@ -104,18 +104,30 @@ function loadall_product($category_id,$typeFilter)
     $sql = "select * from products where 1";
     if ($category_id > 0) {
         $sql .= " and category_id='" . $category_id . "'";
-    }
-    if ($typeFilter == "low") {
+        
+    }else if ($typeFilter == "low" && $category_id == "") {
         $sql.= " ORDER BY price ASC";
-     }
-     if ($typeFilter == "high") {
+     }else if ($typeFilter == "high"  && $category_id == "") {
         $sql.= " ORDER BY price DESC";
-     }
-     if ($typeFilter == "popular") {
+     }else if ($typeFilter == "popular"  && $category_id == "") {
         $sql.= " ORDER BY view DESC";
-     }
-     if ($typeFilter == "least") {
+     }else if ($typeFilter == "least"  && $category_id == "") {
         $sql.= " ORDER BY view ASC";
+     }elseif ($category_id > 0 &&  isset($typeFilter)) {
+        $sql .= " and category_id='" . $category_id . "'";
+            if ($typeFilter == "low") {
+                $sql.= " ORDER BY price ASC";
+             }
+             if ($typeFilter == "high") {
+                $sql.= " ORDER BY price DESC";
+             }
+             if ($typeFilter == "popular") {
+                $sql.= " ORDER BY price DESC";
+             }
+             if ($typeFilter == "least") {
+                $sql.= " ORDER BY price ASC";
+             }
+        
      }
 
     $listsanpham = pdo_query($sql);

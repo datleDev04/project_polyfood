@@ -287,35 +287,27 @@
                     break;
             
                 
-                case "allproduct":
-                    // danh mục
-                    $listall_category = loadall_category();
-                    // sản phẩm
-                    // $typeFilter  = "";
-                    if (isset($_GET['filter'])) {
-                        if ($_SERVER["REQUEST_METHOD"] == 'POST') {
-                            # code...
-                                $typeFilter = $_POST["typeFilter"];
-
-                        }
-
-                        $listall_product = loadall_product("",$typeFilter);
-                    }else {
-                         $listall_product = loadall_product("","");
-                    }
-
-                    require_once "view/client/product.php";
-                    break;
                 case "product":
                     $listall_category = loadall_category();
                     if (isset($_GET['category_id']) && ($_GET['category_id'] > 0)) {
                         $category_id = $_GET['category_id'];
+                        $listall_product = loadall_product($category_id,"");
                     } else {
                         $category_id = "";
+                        $listall_product = loadall_product($category_id,"");
+                    }
+
+                    if (isset($_GET['filter'])) {
+                        if ($_SERVER["REQUEST_METHOD"] == 'POST') {
+                            # code...
+                                $typeFilter = $_POST["typeFilter"];
+                                $listall_product = loadall_product("",$typeFilter);
+                        }else {
+                            $listall_product = loadall_product("","");
+                        }
                     }
                     // $listall_product_cate = loadall_product_category($category_id);
                     // echo $listall_product_cate;
-                    $listall_product = loadall_product($category_id,"","");
                     require_once "view/client/product.php";
                     break;
 
