@@ -68,10 +68,16 @@
 
                                     if ($_SESSION['user']['role_id'] == 1) {   
                                          
-                                    echo ' <a href="../../project_polyfood/view/admin/index.php" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
-                                        role="menuitem" tabindex="-1" id="menu-item-2">
-                                        Trang quản trị
-                                    </a> ';}} ?>
+                                        echo ' <a href="../../project_polyfood/view/admin/index.php" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
+                                            role="menuitem" tabindex="-1" id="menu-item-2">
+                                            Trang quản trị
+                                        </a> 
+                                         <a href="?url=duyet_order" class=" hover:bg-slate-300 block px-4 py-2 text-sm text-gray-700"
+                                            role="menuitem" tabindex="-1" id="menu-item-2">
+                                            Duyệt đơn hàng
+                                        </a> 
+                                        
+                                    ';}} ?>
                                     
                                     <?php if (isset($_SESSION['user'])) {
                                     echo '

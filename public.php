@@ -52,7 +52,6 @@
      * phép sử dụng thì cần thiết phải gọi hàm này trước
      **/
     function check_login(){
-        global $SITE_URL;
         if(isset($_SESSION['user'])){
             if($_SESSION['user']['role_id'] == 1){      
                 return;
@@ -62,11 +61,13 @@
                 }
             }
             
-            if(strpos($_SERVER["REQUEST_URI"], '/admin/') == FALSE && strpos($_SERVER["REQUEST_URI"], '/staff/') == FALSE){
+            if(strpos($_SERVER["REQUEST_URI"], '/admin/') == FALSE ){
                 return;
             }
         }
         $_SESSION['request_uri'] = $_SERVER["REQUEST_URI"];
+        // header("location: project_polyfood/index.php?url=trangchu");
+        echo "<meta http-equiv='refresh' content='0;URL=/project_polyfood/index.php'/>";
     }
 
     function check_signIn(){
@@ -137,6 +138,13 @@
                 icon: 'success'
             });
         }
+    function delivery_orderAlert() {
+            Swal.fire({
+                title: 'THÀNH CÔNG!',
+                text: 'ĐƠN HÀNG SẼ ĐƯỢC GIAO NGAY',
+                icon: 'success'
+            });
+        }
 
     
     function changePasswordSuccess_Alert() {
@@ -167,7 +175,7 @@
                     title: 'ĐĂNG NHẬP THÀNH CÔNG',
                     text: 'BẠN SẼ ĐƯỢC ĐIỀU HƯỚNG ĐẾN TRANG CHỦ SAU 3 GIÂY',
                     timer: 3000, // Display the alert for 3 seconds
-                    showConfirmButton: false
+                    showConfirmButton: true
                 }).then(function() {
                     // Redirect to the home page after the alert is closed
                     window.location.href = '?url=trangchu';

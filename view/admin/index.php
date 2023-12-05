@@ -1,21 +1,37 @@
 <?php
 session_start();
-require_once "menu.php";
-require_once "header.php";
+
 // require_once "../../tongquan.php";
-require_once "../../public.php";
+include "../../public.php";
 require_once "../../models/pdo.php";
 require_once "../../models/categories.php";
 require_once "../../models/product.php";
 require_once "../../models/feedbacks.php";
 require_once "../../models/user.php";
+require_once "../../models/orders.php";
 // require_once "../../global.php";
 // require_once "../../models/feedbacks.php";
 // require_once "../../public/public.php";
+
 $url = isset($_GET['url']) ? $_GET['url'] : 'trang_chu';
+check_login() ;
+if ( $_SESSION['user']['role_id'] ==1 ) {
+    # code...
+    require_once "menu.php";
+    require_once "header.php";
+}
+
 extract($_REQUEST);
 if (isset($url) && $url != "") {
     switch ($url) {
+        case "logout":
+            echo "<meta http-equiv='refresh' content='0;URL=?index.php'/>";
+            $user_name = get_cookie("user_name");
+            $password = get_cookie("password");
+            unset($_SESSION['user']);
+            echo"<script> signOutSuccess() ;</script>";
+
+            break;
         case 'product':
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
                 $product_id = $_GET['product_id'];
@@ -417,6 +433,18 @@ if (isset($url) && $url != "") {
                 $user = select_all_users();
                 require_once "user/listUser.php";
                 break;
+
+
+            case 'list_oder':
+                    $items = statistic_orders();
+                    require_once "oder/list.php";
+                    break;
+            case 'chitiet_oder':
+                    $list_all_user=select_all_users();
+                    $items= info_order($user_id);
+        
+                    require_once "oder/chitiet_oder.php";
+                    break;
         
     }
 }

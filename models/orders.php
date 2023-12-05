@@ -74,12 +74,12 @@ function order_select_by_finish()
 
 function order_select_by_unfinished()
 {
-    $sql = "SELECT o.*,u.name,u.user_id,p.product_name,p.image,p.price,p.discount FROM orders o JOIN users u ON o.user_id = u.user_id JOIN products p ON o.product_id = p.product_id WHERE o.status=0";
+    $sql = "SELECT o.*,u.name,u.user_id,p.product_name,p.image,p.price,p.discount FROM orders o JOIN users u ON o.user_id = u.user_id JOIN products p ON o.product_id = p.product_id WHERE o.status=0 order by o.order_id DESC";
     return pdo_query($sql);
 }
 function info_order($user_id)
 {
-    $sql = "SELECT o.*,u.name,u.user_id,u.user_name,p.product_name,p.image,p.price,p.discount FROM orders o JOIN users u ON o.user_id = u.user_id JOIN products p ON o.product_id = p.product_id WHERE o.user_id=$user_id";
+    $sql = "SELECT o.*,u.name,u.user_id,u.user_name,p.product_name,p.image,p.price,p.discount FROM orders o JOIN users u ON o.user_id = u.user_id JOIN products p ON o.product_id = p.product_id WHERE o.user_id=$user_id order by o.order_id DESC ";
     return pdo_query($sql);
 }
 
@@ -94,4 +94,17 @@ function count_order_by_user($user_id)
 {
     $sql = "SELECT count(*) FROM orders WHERE user_id=$user_id";
     return pdo_query_value($sql);
+}
+
+
+function statistic_orders(){
+    $sql = "SELECT u.user_id, u.user_name,u.name,"
+    . " COUNT(*) total,"
+    . " MIN(o.time_order) old,"
+    . " MAX(o.time_order) new"
+    . " FROM orders o "
+    . " JOIN users u ON u.user_id=o.user_id "
+    . " GROUP BY u.user_id, u.user_name, u.name"
+    . " HAVING total > 0";
+    return pdo_query($sql);
 }

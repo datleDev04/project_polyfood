@@ -556,6 +556,20 @@
                     
                     break;
 
+                case 'duyet_order':
+                        $items = order_select_by_unfinished();
+
+                        if (isset($_POST['btn_confirm'])) {
+                            $order_id = $_POST['order_id'];
+                            confirm_orderStatus($order_id,1);
+                            echo"<script> delivery_orderAlert() ;</script>";
+                            $items = order_select_by_unfinished();
+
+                        }
+                        
+                        require_once "view/admin/oder/duyet_order.php";
+                        break;
+
                     
                 default:
                     require_once"view/client/home.php";
