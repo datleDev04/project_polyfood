@@ -75,6 +75,10 @@ function statistic_feedbacks(){
     . " GROUP BY pro.product_id, pro.product_name"
     . " HAVING total > 0";
     return pdo_query($sql);
+}
 
+function able_feedback($user_id){
+    $sql = "SELECT product_id from orders where user_id = $user_id";
+    return pdo_query($sql);
 }
 ?>

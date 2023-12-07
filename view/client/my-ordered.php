@@ -108,6 +108,13 @@
                                 Hủy đơn
                             </a>
                             <?php }?>
+                            <?php if ($status == 2) {?>
+
+                            <a href="?url=detail_product&product_id=<?= $product_id ?>" name="cancel_order"
+                                class="whitespace-nowrap bg-red-500 text-white text-sm font-semibold px-3 py-2 rounded-lg">
+                                Đánh giá sản phẩm
+                            </a>
+                            <?php }?>
 
                             <!-- Nếu nút confim được submit thì hiển thị nút đánh giá -->
                         </div>

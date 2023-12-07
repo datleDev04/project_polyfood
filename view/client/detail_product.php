@@ -112,7 +112,7 @@
             <div id="btn" class="inlinde-block md:mr-44  text-xl text-center rounded-xl md:w-[90px] md:h-[48px] border-red-500 bg-orange-500">
             </div>
             <button type="button" class="toggle-btn" onclick="leftClick()"><span id="trai" class="inline-block px-8 py-2 text-xl text-white rounded-xl sili">Mô tả</span></button>
-            <button type="button" class="toggle-btn" onclick="rightClick()"><span id="phai" class="inline-block px-8 py-2 text-xl text-red-500 rounded-xl ">Nhận xét ( <?= $count ?>
+            <button type="button" class="toggle-btn" onclick="rightClick()"><span id="phai" class="inline-block px-8 py-2 text-xl text-red-500 rounded-xl ">Đánh giá ( <?= $count ?>
                     )</span></button>
         </div>
         <p class="px-6 py-6 font-light text-gray-500 text-md" id="description"><?= $detail ?></p>
@@ -198,14 +198,23 @@
                         <textarea id="note" name="note" placeholder="Điền đánh giá ...." class="md:w-[612px] md:h-[97px] border-2 rounded px-4 py-1"></textarea>
                         <br>
                         <?php
-
-                        if (isset($_SESSION['user'])) {
-                            echo "<button type='submit' class='px-10 py-2 text-white bg-orange-500 rounded'>Gửi</button>";
-                        }else {
-                            
-                            echo "<h5 class='text-red-500'><a class='font-bold  text-blue-700' href='?url=dangnhap'>Đăng nhập</a> để bình luận</h5>";
+                        $ordered_product = able_feedback($_SESSION['user']['user_id']);
+                        $number_product_orderedWithID =0;
+                        // var_dump($ordered_product);
+                        foreach ($ordered_product as $value) {
+                            // var_dump($value['product_id']);
+                            if ($value['product_id'] == $product_id) {
+                                $number_product_orderedWithID +=1;
+                            }
                         }
-                        ?>
+                            if ($number_product_orderedWithID >0) {
+                                echo "<button type='submit' class='px-10 py-2 text-white bg-orange-500 rounded'>Gửi</button>";
+                            }
+                            else {
+                            echo "<h5 class='text-red-500'> MUA HÀNG ĐỂ CÓ THỂ ĐÁNH GIÁ</h5>";
+                            }
+                        
+                            ?>
                         
                     </div>
                 </div>
