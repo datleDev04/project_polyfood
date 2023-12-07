@@ -1,97 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="./IMG/favicon.ico" sizes="16x16" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="src/css/index.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>ADMIN</title>
-</head>
-
-<body>
-    <div id="root" class="font-montserrat min-w-[320px] max-w-[1400px] mx-auto">
-        <div class="wrapper w-full flex gap-3 p-3">
-            <aside style="
-            border-radius: 30px;
-            background: #fff;
-            box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-          " class="w-[15%] flex flex-col gap-5 p-5">
-                <ul class="w-full menu__bar flex flex-col justify-center gap-5 p-3">
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="./src/assets/icons/home.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Trang chính</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/product.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Sản phẩm</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center" name="btn_list">
-                        <img style="width: 22px;" src="src/assets/icons/category.png" alt="">
-                        <a href="index.php?url=listdm" class="font-medium text-md ml-3 text-gray-500">Danh mục</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/user.png" alt="">
-                        <a href="index.php?url=listUser" class="font-medium text-md ml-3 text-gray-500">Người dùng</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/bubble-chat.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Bình luận</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/shopping-cart.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Đơn hàng</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/feedback.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Phản hồi</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/analysis.png" alt="">
-                        <a href="index.php?url=listchart" class="font-medium text-md ml-3 text-gray-500">Thống kê</a>
-                    </li>
-                    <li class="menu__bar-item flex gap-3 items-center">
-                        <img style="width: 22px;" src="src/assets/icons/back.png" alt="">
-                        <a href="" class="font-medium text-md ml-3 text-gray-500">Về trang chủ</a>
-                    </li>
-                </ul>
-            </aside>
-            <!-- End aside -->
-
-            <article class="w-[85%]">
-                <header style="border-radius: 10px; background: #fff; box-shadow: 35px 35px 70px #bebebe,
--35px -35px 70px #ffffff;
-" class="w-full h-[60px] flex items-center justify-between px-5 py-2">
-                    <div class="logo-[100px] h-auto px-2 flex gap-2 items-center justify-center">
-                        <a href="../../index.php">
-                            <img src="../../site/IMG/logo.png" alt="logo" class="w-16 h-auto" />
-                        </a>
-
-                    </div>
-                    <div class="account__admin flex items-center gap-2">
-                        <div class="account__admin--avatar">
-
-                            <img src="<?= $CONTENT_URL  ?>/images/users/<?= $_SESSION['user']['image'] ?>" alt="" class="w-10 h-10 rounded-full" />
-                        </div>
-                        <div class="account__admin--name flex flex-col gap-1">
-                            <p class="font-medium text-sm text-gray-500">
-                                <?= $_SESSION['user']['name'] ?>
-                            </p>
-                            <a href="index.php?action=logout" class="logout text-xs text-gray-500 flex items-center gap-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-                                </svg>
-                                Logout
-                            </a>
-                        </div>
-                    </div>
-                </header>
-                <!-- End header -->
                 <main style="border-radius: 10px; background: #fff; box-shadow: 35px 35px 70px
 #bebebe, -35px -35px 70px #ffffff; " class="w-full  p-5 mt-5 bg-gray-100">
                     <section class="list__accounts w-full">
@@ -104,7 +11,7 @@
                                 Thống kê hàng hóa
                             </h1>
                         </section>
-                        <form action="index.php?url=chart" method="post">
+                        <form action="index.php?url=bieudo1" method="post">
                             <div class="list__accounts-table w-full   mt-4">
                                 <table class="w-[600px] mx-auto text-center rounded-md shadow-md my-3">
                                     <thead class="boder bg-gray-200 px-2 rounded-t-md">
@@ -176,14 +83,4 @@
                     </section>
                 </main>
 
-            </article>
-        </div>
-    </div>
-</body>
-
-</html>
-</div>
-</div>
-</body>
-
-</html>
+   

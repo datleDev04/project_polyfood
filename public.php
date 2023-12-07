@@ -55,10 +55,6 @@
         if(isset($_SESSION['user'])){
             if($_SESSION['user']['role_id'] == 1){      
                 return;
-            }else if($_SESSION['user']['role_id'] == 2){
-                if(strpos($_SERVER["REQUEST_URI"], '/admin/') == FALSE){
-                    return;
-                }
             }
             
             if(strpos($_SERVER["REQUEST_URI"], '/admin/') == FALSE ){
@@ -142,6 +138,13 @@
             Swal.fire({
                 title: 'THÀNH CÔNG!',
                 text: 'ĐƠN HÀNG SẼ ĐƯỢC GIAO NGAY',
+                icon: 'success'
+            });
+        }
+    function deleleFeedback_Alert() {
+            Swal.fire({
+                title: 'THÀNH CÔNG!',
+                text: 'ĐÃ XÓA ĐÁNH GIÁ',
                 icon: 'success'
             });
         }

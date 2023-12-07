@@ -24,13 +24,22 @@
         //     }
         // }
         // else{
-        $sql = "DELETE FROM products WHERE  product_id=$product_id";
+        $sql = "UPDATE products SET product_status= 1 WHERE  product_id=$product_id";
             pdo_execute($sql);
         //}
     }
+
+    function recover_product($product_id){
+        $sql = "UPDATE products SET product_status= 0 WHERE  product_id=$product_id";
+            pdo_execute($sql);
+    }
         
     function products_select_all(){
-        $sql = "SELECT p.*,c.category_name FROM products p join categories c on p.category_id=c.category_id ";
+        $sql = "SELECT p.*,c.category_name FROM products p join categories c on p.category_id=c.category_id WHERE p.product_status=0";
+        return pdo_query($sql);
+    }
+    function products_disable_select_all(){
+        $sql = "SELECT p.*,c.category_name FROM products p join categories c on p.category_id=c.category_id WHERE p.product_status=1";
         return pdo_query($sql);
     }
         
@@ -101,7 +110,7 @@
 }
 function loadall_product($category_id,$typeFilter)
 {
-    $sql = "select * from products where 1";
+    $sql = "select * from products where products.product_status=0";
     if ($category_id > 0) {
         $sql .= " and category_id='" . $category_id . "'";
         
@@ -186,4 +195,16 @@ function update_quantity($product_id,$quantity){
     pdo_execute($sql);
 }
 //  
+
+function statistic_products(){
+    $sql = "SELECT cate.category_id, cate.category_name,"
+    . " COUNT(*) total,"
+    . " MIN(pro.price) price_min,"
+    . " MAX(pro.price) price_max,"
+    . " AVG(pro.price) price_avg"
+    . " FROM products pro "
+    . " JOIN categories cate ON cate.category_id=pro.category_id "
+    . " GROUP BY cate.category_id, cate.category_name";
+return pdo_query($sql);
+}
 ?>

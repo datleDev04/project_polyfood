@@ -70,4 +70,3 @@ rounded-md text-sm hover:bg-gray-200 leading-4 ">
                     </section>
                     <!-- End add_product -->
                 </main>
-

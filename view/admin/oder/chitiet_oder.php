@@ -140,10 +140,10 @@
 1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" type="submit" name="btn_delete" class=" p-3 whitespace-nowrap   border rounded-md w-[120px] text-center   text-xs hover:bg-gray-200 leading-4 ">
                     Xóa mục đã chọn
                 </button>
-                <button style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
+                <a href="index.php?url=list_oder" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
 1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;" type="submit" name="btn_list" class=" p-3 whitespace-nowrap  border rounded-md w-[120px] text-center   text-xs hover:bg-gray-200 leading-4 ">
                     Danh sách
-                </button>
+                </a>
                 <input type="checkbox" hidden id="checkAll" name="checkAll" />
             </div>
         </form>

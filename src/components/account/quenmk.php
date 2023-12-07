@@ -26,7 +26,7 @@
                 </div>
                 <div class="form__group flex flex-col justify-center items-center gap-3">
                     <button type="submit" name="btn_forgot" class="text-white bg-orange-600 p-2 rounded-lg w-full sm:w-[100px] text-center">
-                        Confirm
+                        Xác Nhận
                     </button>
                 </div>
             </form>

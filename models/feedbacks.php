@@ -10,18 +10,18 @@ function update_feedbacks($user_id, $product_id,$rate, $content, $feedback_id){
     pdo_execute($sql);
 }
 function feedbacks_delete($feedback_id) {
-    if(is_array($feedback_id)){
-        foreach ($feedback_id as $ma) {
-    $sql = "DELETE FROM feedbacks  WHERE feedback_id=$ma";
+    // if(is_array($feedback_id)){
+    //     foreach ($feedback_id as $ma) {
+    // $sql = "DELETE FROM feedbacks  WHERE feedback_id=$ma";
 
-            pdo_execute($sql);
-        }
-    }
-    else{
+    //         pdo_execute($sql);
+    //     }
+    // }
+    // else{
     $sql = "DELETE FROM feedbacks  WHERE feedback_id=$feedback_id";
 
         pdo_execute($sql);
-    }
+    //}
 
 }
 function feedbacks_select_all(){

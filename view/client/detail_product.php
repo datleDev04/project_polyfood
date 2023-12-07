@@ -17,6 +17,7 @@
 // $items = products_select_by_id($product_id);
 // extract($items);
 // $category_id = $items['category_id'];
+
 ?>
 
 <section class="max-w-6xl mx-auto mt-10">
@@ -198,21 +199,24 @@
                         <textarea id="note" name="note" placeholder="Điền đánh giá ...." class="md:w-[612px] md:h-[97px] border-2 rounded px-4 py-1"></textarea>
                         <br>
                         <?php
-                        $ordered_product = able_feedback($_SESSION['user']['user_id']);
-                        $number_product_orderedWithID =0;
-                        // var_dump($ordered_product);
-                        foreach ($ordered_product as $value) {
-                            // var_dump($value['product_id']);
-                            if ($value['product_id'] == $product_id) {
-                                $number_product_orderedWithID +=1;
+                         
+                         $number_product_orderedWithID =0;
+                            if (isset($_SESSION['user'])) {
+                                $ordered_product = able_feedback($_SESSION['user']['user_id']);
+                                foreach ($ordered_product as $value) {
+                                // var_dump($value['product_id']);
+                                    if ($value['product_id'] == $product_id) {
+                                        $number_product_orderedWithID +=1;
+                                    }
+                                }  
                             }
-                        }
                             if ($number_product_orderedWithID >0) {
                                 echo "<button type='submit' class='px-10 py-2 text-white bg-orange-500 rounded'>Gửi</button>";
                             }
                             else {
-                            echo "<h5 class='text-red-500'> MUA HÀNG ĐỂ CÓ THỂ ĐÁNH GIÁ</h5>";
+                                echo "<h5 class='text-red-500'> MUA HÀNG ĐỂ CÓ THỂ ĐÁNH GIÁ</h5>";
                             }
+                            
                         
                             ?>
                         

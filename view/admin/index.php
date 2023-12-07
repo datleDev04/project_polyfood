@@ -13,16 +13,17 @@ require_once "../../models/orders.php";
 // require_once "../../models/feedbacks.php";
 // require_once "../../public/public.php";
 
-$url = isset($_GET['url']) ? $_GET['url'] : 'trang_chu';
-check_login() ;
-if ( $_SESSION['user']['role_id'] ==1 ) {
-    # code...
-    require_once "menu.php";
-    require_once "header.php";
-}
+check_login();
+$url = isset($_GET['url']) ? $_GET['url'] : 'thongke';
+
 
 extract($_REQUEST);
 if (isset($url) && $url != "") {
+    if ( $_SESSION['user']['role_id'] ==1 ) {
+        # code...
+        require_once "menu.php";
+        require_once "header.php";
+    }
     switch ($url) {
         case "logout":
             echo "<meta http-equiv='refresh' content='0;URL=?index.php'/>";
@@ -33,6 +34,8 @@ if (isset($url) && $url != "") {
 
             break;
         case 'product':
+            check_login() ;
+
             if (isset($_GET['product_id']) && ($_GET['product_id'] > 0)) {
                 $product_id = $_GET['product_id'];
             } else {
@@ -43,6 +46,7 @@ if (isset($url) && $url != "") {
             require_once "../admin/products/list.php";
             break;
         case 'xoa_product':
+            
             if (isset($_GET['product_id'])) {
                 $product_id = $_GET['product_id'];
                 products_delete($product_id);
@@ -51,6 +55,16 @@ if (isset($url) && $url != "") {
 
             $listall_product = loadallproduct();
             require_once "../admin/products/list.php";
+            break;
+        case 'recover_product':
+            if (isset($_GET['product_id'])) {
+                $product_id = $_GET['product_id'];
+                recover_product($product_id);
+            }
+            $items = products_disable_select_all();
+
+            $listall_product = loadallproduct();
+            require_once "../admin/products/disable_product.php";
             break;
 
 
@@ -165,7 +179,18 @@ if (isset($url) && $url != "") {
             extract($_REQUEST);
             $items = info_feedback($product_id);
             // $items=feedbacks_select_all();
+            
             require_once "../admin/feedback/chitietfeedback.php";
+            break;
+
+        case 'xoaFb':
+            if (isset($_GET['feedback_id'])) {
+                feedbacks_delete($_GET['feedback_id']);
+                echo"<script> deleleFeedback_Alert() ;</script>";
+            }
+            $items = statistic_feedbacks();
+            // $items=feedbacks_select_all();
+            require_once "../admin/feedback/feedback.php";
             break;
         
             case 'adddm':
@@ -210,8 +235,18 @@ if (isset($url) && $url != "") {
                 $listcategories = loadall_categories();
                 require_once "categories/list.php";
                 break;
+            case 'recover_category':
+                $listcategories = loadall_categories_disabled();
+                if (isset($_GET['category_id'])) {
+                    recover_category($_GET['category_id']);
+                    $listcategories = loadall_categories_disabled();
+
+                }
+                require_once "categories/recover_category.php";
+                break;
     
             case 'editdm':
+                
                 $category_name = $suggest = "";
                 if (isset($_GET['category_id'])) {
                     $category_id = $_GET['category_id'];
@@ -445,6 +480,21 @@ if (isset($url) && $url != "") {
         
                     require_once "oder/chitiet_oder.php";
                     break;
+
+            case 'thongke':
+                $items = statistic_products();
+                require_once "statistics/listchart.php";
+                break;
+
+            case 'bieudo1':
+                $items = statistic_products();
+                require_once "statistics/chart.php";  
+                break;
+
+
+            default:
+                
+            break;
         
     }
 }

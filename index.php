@@ -159,7 +159,7 @@
             case 'doimk':
                 // $user_id= $_SESSION['user']['user_id'];
                 $password= $_SESSION['user']['password'];
-                var_dump($password);
+                // var_dump($password);
                 $password2 = $password3 ="";
                 $flag = true;
                 if(isset($_POST['btn_change'])) {
@@ -351,7 +351,7 @@
                     $user_feedbacks = join_feedbacks_user($product_id);
                     $count = count_feedbacks($product_id);
                     $price_discount = $price * (1 - $discount / 100);
-
+                        
 
 
                     $product_cungloai = load_product_cungloai($product_id, $category_id);

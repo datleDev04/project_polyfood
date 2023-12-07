@@ -18,53 +18,48 @@ $items = info_feedback($product_id);
                 </h1>
             </section>
             <h3 class="font-medium text-sm text-indigo-500 my-5">Mã sản phẩm : <?= $items[0]['product_id'] ?></h3>
-            <div class="list__accounts-table w-full mt-4">
+            <form  action="?url=chitietfeedback&feedback_id=<?=$feedback_id?>" method="post" class="list__accounts-table w-full mt-4">
+                <input  type="hidden" name="product_id" value="<?=$items[0]['product_id']?>">
                 <table class="w-full text-center rounded-md shadow-md my-3">
                     <thead class="boder bg-gray-200 px-2 rounded-t-md">
                         <tr>
-                            <th class=" text-xs  p-2 w-32 font-medium">
-                                Nội dung
-                            </th>
                             <th class=" text-xs  p-2 font-medium">
                                 Đánh giá
                             </th>
                             <th class=" text-xs  p-2  font-medium">
-                                Hình ảnh
+                                Nội dung
                             </th>
+                            
                             <th class=" text-xs  px-6 py-2 font-medium">
                                 Ngày đăng
                             </th>
                             <th class=" text-xs  px-2 py-2 font-medium">
                                 Người đăng
                             </th>
+                            <th>
+                                Thao tác
+                            </th>
 
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-            foreach ($items as $item) {
+                foreach ($items as $item) {
               extract($item);
-            ?>
+                ?>
                         <tr class="border-t-2 border-dashed">
-                            <td class="p-2 whitespace-nowrap">
-                                <p class="text-xs  text-gray-900 ">
-                                    <?= $content ?>
-                                </p>
-                            </td>
                             <td class="p-2 w-20 ">
                                 <p class="text-xs text-gray-900 ">
                                     <?= $rate ?>
                                 </p>
                             </td>
                             <td class="p-2 whitespace-nowrap">
-                               <?php if(!empty($image)){ ?>
-                                <img class="rounded-md object-cover object-center block mx-auto"
-                                    src="<?= $CONTENT_URL ?>/images/feedbacks/<?= $image ?>" width="60" height="60"
-                                    alt="">
-                                <?php }else {?>
-                                    <p class="text-xs text-gray-900 ">No image feedback</p>
-                                    <?php } ?>
+                                <p class="text-xs  text-gray-900 ">
+                                    <?= $content ?>
+                                </p>
                             </td>
+                            
+                            
                             <td class="p-2 whitespace-nowrap">
                                 <p class="text-xs text-gray-900">
                                     <?= $time_send ?>
@@ -75,14 +70,19 @@ $items = info_feedback($product_id);
                                     <?= $user_name ?>
                                 </p>
                             </td>
+                            <td class="p-2 whitespace-nowrap">
+                                <a href="?url=xoaFb&feedback_id=<?=$feedback_id?>" type="submit" class="text-indigo-600 hover:text-indigo-900 text-xs">
+                                    Xóa
+                                </a>
+                            </td>
 
                         </tr>
-                        <?php } ?>
                     </tbody>
+                    <?php } ?>
                 </table>
-            </div>
+            </form>
             <div class="list__accounts-table--button w-full px-5 mt-7 flex justify-center gap-5">
-                <a href="index.php?url=feedback" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
+                <a href="?url=feedback" style="text-shadow: 0.6px 0.6px 0 #fff; color: #61677c; box-shadow:
 1.5px 1.5px 2.5px #babecc, -2px -2px 5px #fff;"
                     class=" p-3  border rounded-md  text-center   text-xs hover:bg-gray-200 leading-4 ">
                     Danh sách phản hồi
