@@ -178,11 +178,6 @@ function loadallproduct(){
     return $listsanpham;
 }
 
-function select_all_users()
-{
-    $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id";
-    return pdo_query($sql);
-}
 
 function products_insert($product_name, $price, $discount, $image, $category_id, $quantity, $detail){
     $sql = "INSERT INTO products(product_name, price, discount, image, category_id,  quantity, detail) 

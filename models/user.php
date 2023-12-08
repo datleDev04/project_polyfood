@@ -15,23 +15,38 @@ function update_users($user_name, $password, $name, $email, $phone, $image, $rol
 }
 function delete_users($user_id)
 {
-    if (is_array($user_id)) {
-        foreach ($user_id as $ma) {
-            $sql = "DELETE FROM users WHERE user_id=$ma";
+    // if (is_array($user_id)) {
+    //     foreach ($user_id as $ma) {
+    //         $sql = "DELETE FROM users WHERE user_id=$ma";
 
-            pdo_execute($sql);
-        }
-    } else {
-        $sql = "DELETE FROM users  WHERE user_id=$user_id";
+    //         pdo_execute($sql);
+    //     }
+    // } else {
+        $sql = "UPDATE users set user_status =1 WHERE user_id=$user_id";
 
         pdo_execute($sql);
-    }
+    //}
 }
-// function select_all_users()
-// {
-//     $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id";
-//     return pdo_query($sql);
-// }
+
+function Unlock_users($user_id)
+{
+        $sql = "UPDATE users set user_status =0 WHERE user_id=$user_id";
+
+        pdo_execute($sql);
+}
+
+
+
+function select_all_users()
+{
+    $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id where u.user_status =0";
+    return pdo_query($sql);
+}
+function select_allBanned_users()
+{
+    $sql = "SELECT u.*,r.role_name FROM users u join roles r on u.role_id = r.role_id where u.user_status =1";
+    return pdo_query($sql);
+}
 function select_by_id_users($user_id)
 {
     $sql = "SELECT * FROM users WHERE user_id=$user_id";

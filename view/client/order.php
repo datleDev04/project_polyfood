@@ -175,15 +175,5 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );" name="note" id="note" class="w-f
     </div>
     </div>
   </form>
-  <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="view\client\online_payment.php">
 
-                <div class="pt-10 pt-lg-5 mb-30"> 
-                        <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="view\client\online_payment.php">
-                            <input type="hidden" name="total" value="<?php echo $total; ?>">
-                            <div style="margin-top: 1em;">
-                                <button type="submit" class="vs-btn">MoMo Payment</button>
-                            </div>
-                        </form>
-                </div>
-            </form>
 </main>

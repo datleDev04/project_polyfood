@@ -113,6 +113,20 @@
                 icon: 'error'
             });
         }
+    function bannedAccount() {
+            Swal.fire({
+                title: 'KHÔNG THỂ ĐĂNG NHẬP',
+                text: 'TÀI KHOẢN CỦA BẠN ĐÃ BỊ KHÓA',
+                icon: 'error'
+            });
+        }
+    function limitItems_Alert() {
+            Swal.fire({
+                title: 'LỖI',
+                text: 'VƯỢT QUÁ SỐ LƯỢNG SẢN PHẨM CÒN LẠI',
+                icon: 'error'
+            });
+        }
     function signOutSuccess() {
             Swal.fire({
                 title: 'ĐĂNG XUẤT THÀNH CÔNG',

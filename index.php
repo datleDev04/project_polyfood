@@ -34,11 +34,17 @@
                     // echo $user_name;
                     if ($user) {
                         if ($user['password'] == $password) {
-                            $_SESSION["user"] = $user;
-                            if (!isset($_SESSION['my_cart'])) {
-                                $_SESSION['my_cart'] =[];      
+
+                            if ($user['user_status'] == 0) {
+                                # code...
+                                $_SESSION["user"] = $user;
+                                if (!isset($_SESSION['my_cart'])) {
+                                    $_SESSION['my_cart'] =[];      
+                                }
+                                echo"<script> loginSuccess() ;</script>";
+                            }else {
+                                echo"<script> bannedAccount() ;</script>";
                             }
-                            echo"<script> loginSuccess() ;</script>";
 
 
                         } else {
@@ -433,7 +439,11 @@
                             $items_tmp = products_select_by_id($id);
                             $price = $items_tmp["price"];
                             if ($_POST["choose"] == 1) {
-                                $quantity += 1;
+                                if ($quantity < $items_tmp["quantity"]) {                                  
+                                    $quantity += 1;
+                                }else {
+                                    echo"<script> limitItems_Alert() ;</script>";
+                                }
                             }
                             if ($_POST["choose"] == 0) {
                         

@@ -54,6 +54,7 @@
                                     value="<?= $item['quantity'] ?>" readonly/>
                                 <input type="hidden" id="product_id" name="product_id"
                                     value="<?= $item['product_id'] ?>" />
+                                
                                 <button style="box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37)" name="choose" value="1"
                                     class="bg-white rounded-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

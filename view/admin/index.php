@@ -302,6 +302,17 @@ if (isset($url) && $url != "") {
                 $user = select_all_users();
                 require_once "user/listUser.php";
                 break;
+
+            case 'banUser':
+                $user = select_allBanned_users();
+                if (isset($_GET['user_id'])) {
+                    Unlock_users($_GET['user_id']);
+                $user = select_allBanned_users();
+
+                }
+                require_once "user/listBanned_user.php";
+                
+                break;
     
             case 'addUser':
                 $user_name = "";
