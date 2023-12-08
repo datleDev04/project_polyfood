@@ -179,7 +179,7 @@
 
                 <div class=" grid grid-cols-[100px,auto]  mt-10">
                     <div class="rounded-full flex items-center gap-5 rounded-2 rounded-red-500 w-[100px] h-[48px]">
-                        <img src="<?= $CONTENT_URL . '/images/users/' ?><?= isset($_SESSION['user']) ? $_SESSION['user']['image'] : 'user.png' ?>" alt="" class="rounded-full w-[48px] h-[48px]">
+                        <img src="<?= $CONTENT_URL . '/images/users/' ?><?= isset($_SESSION['user']) ? $_SESSION['user']['image'] : 'user.png' ?>" alt="" class="w-[48px] h-[48px] rounded-full ">
                         <span class="text-gray-500 whitespace-nowrap">
                             <?= isset($_SESSION['user']) ? $_SESSION['user']['name'] : '<h4 class="font-bold text-red-600">RẤT TIẾC BẠN CHƯA ĐĂNG NHẬP</h4>' ?>
                         </span>

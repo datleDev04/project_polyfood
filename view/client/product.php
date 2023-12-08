@@ -39,19 +39,10 @@
                 </div>
 
             </div>
-            <?php
-            if (isset($_GET['search'])) {
-                echo '
-    <form action="?url=search&filter=' . $keyword . '" method="POST" class="flex justify-end">
-';
-            }else {
-                echo '
+
+            
                 <form action="?url=product&filter" method="POST" class="flex justify-end ">     
-                ';
-            }
-            ?>
-            <!-- LỌC CHO TÌM KIẾM -->
-            <!-- LỌC TẤT CẢ SẢN PHẨM -->
+
     <div>
         <select name="typeFilter" id="typeFilter" class="ml-2 float-right p-2 border rounded border-gray-300 w-[200px]"">
             <option class="py-3" value="" >Tất Cả</option>
